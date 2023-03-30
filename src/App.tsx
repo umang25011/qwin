@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react"
+import Router from "./routes/Router"
+import "./App.css"
+import { Provider } from "react-redux"
+import { store, useAppDispatch } from "./store/store"
+import ReduxToastr from "react-redux-toastr"
+import { LOCAL_STORAGE } from "./config/localStorage"
 
 function App() {
+  useEffect(() => {
+    LOCAL_STORAGE.isLoading(false)
+  }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider store={store}>
+        <ReduxToastr
+          timeOut={5}
+          newestOnTop={false}
+          preventDuplicates
+          position="top-right"
+          // @ts-ignore
+          getState={(state) => state.toastr} // This is the default
+          transitionIn="bounceInDown"
+          transitionOut="bounceOutUp"
+          progressBar
+          closeOnToastrClick={true}
+          removeOnHover={true}
+        />
+        <Router />
+      </Provider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

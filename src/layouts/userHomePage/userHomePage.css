@@ -1,0 +1,64 @@
+.button-container {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    position: fixed;
+    bottom: 0.5em;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 4rem;
+    box-shadow: #01002a 0 0.1em 0.5em;
+    background-color: #fff;
+    font-size: 1.5em;
+    border-radius: 1.5em;
+  }
+  
+  button {
+    background-color: transparent;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, border-bottom 0.3s ease;
+    border-bottom: 2px solid transparent;
+    color: #000;
+    width: 100%;
+    border-radius: 1.5em;
+  }
+  
+  button:hover {
+    background-color: #f2f2f2;
+    height: 100%;
+  }
+  
+  .button-active {
+    outline: none;
+    border-width: 0.1em;
+    background-image: linear-gradient(143deg, #01002a 5%, #156caa 96%);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 2px;
+    height: 100%;
+    background-color: #f2f2f2;
+    transition: ease-in-out 0.1s;
+  }
+  
+  .separator {
+    height: 1.5rem;
+    border-left: 1px solid #ccc;
+    /* margin: 0 1rem; */
+  }
+  
+
+  .event-list li {
+    margin-bottom: 0.5rem;
+  }
+  
+  #event-list-container.active-list #upcoming-events-list {
+    /* display: block; */
+  }
+  
+  #event-list-container.active-list #my-events-list {
+    /* display: block; */
+  }
+  

@@ -1,0 +1,37 @@
+/* table {
+  width: auto;
+  table-layout: fixed;
+  background: #01002a;
+  color: #fff;
+  max-height: 20vh;
+  padding: 20px;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  margin-top: 5em;
+}
+
+th,
+tr > td {
+  text-align: left;
+  width: 100%;
+  padding: 1em;
+}
+
+th {
+  background: #01002a;
+  padding: 1em;
+  color: white;
+  width: 1em;
+}
+
+tr:nth-child(even) {
+  background: rgb(137, 209, 251);
+  color: black;
+  height: 1em;
+}
+
+tr:nth-child(odd) {
+  color: black;
+  height: 1em;
+  background: #c3e1fa;
+} */

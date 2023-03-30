@@ -1,0 +1,93 @@
+.event-form {
+  background: linear-gradient(180deg, #01002a 5%, #156caa 96%) !important;
+  /* background: linear-gradient(180deg, #01002a 5%, #156caa 96%) !important; */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  margin: auto;
+}
+
+.form-title {
+  font-size: 28px;
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #fff;
+}
+
+input[type="text"],
+textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+}
+
+input[type="datetime-local"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="submit"],
+input[type="button"],
+button[type="submit"],
+button[type="button"] {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+input[type="submit"],
+button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+input[type="datetime-local"]:focus {
+  outline: none;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+input[type="submit"],
+input[type="button"],
+button[type="submit"],
+button[type="button"] {
+  cursor: pointer;
+}

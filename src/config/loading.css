@@ -1,0 +1,72 @@
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(183, 183, 183);
+    opacity: 0.6;
+    position: absolute;
+    z-index: 10;
+  }
+  
+  .loading-square {
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    background: linear-gradient(45deg, #0057e7, #1c8cff);
+    border-radius: 5px;
+    animation: loading 1s ease-in-out infinite;
+  }
+  
+  .loading-square:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .loading-square:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  
+  .loading-square:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  
+  .loading-square:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  
+  .loading-square:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+  
+  .loading-square:nth-child(6) {
+    animation-delay: 0.5s;
+  }
+  
+  .loading-square:nth-child(7) {
+    animation-delay: 0.6s;
+  }
+  
+  .loading-square:nth-child(8) {
+    animation-delay: 0.7s;
+  }
+  
+  .loading-square:nth-child(9) {
+    animation-delay: 0.8s;
+  }
+  
+  @keyframes loading {
+    0% {
+      opacity: 0.2;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+    100% {
+      opacity: 0.2;
+      transform: scale(1);
+    }
+  }
+  

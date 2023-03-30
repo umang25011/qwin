@@ -1,0 +1,23 @@
+/* QRCode.css */
+
+.qr-code-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: white;
+  padding: 2em;
+  position: relative;
+  top: 2em;
+}
+
+.qr-code-container svg {
+  fill: #000;
+  width: 80vw;
+  height: 100vh;
+  max-width: 450px;
+  max-height: 450px;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  background-color: black;
+}
