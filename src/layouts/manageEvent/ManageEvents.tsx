@@ -22,6 +22,11 @@ export default function ManageEvents() {
   const disableCloseButtonFocus = true
   const { id } = useParams()
 
+  useEffect(() => {
+    return () => {
+      setEvent(initialEventDetails)
+    }
+  }, [])
   // fetch details of event from FireBase
   useEffect(() => {
     if (id) {
@@ -31,10 +36,11 @@ export default function ManageEvents() {
 
   // update state object from redux
   useEffect(() => {
-    if (!event.id && reduxEvent.id) {
+    if (!window.location.href.includes("/create-event")) {
       setEvent(reduxEvent)
       console.log("Redux Event: ", reduxEvent)
     }
+    return () => {}
   }, [reduxEvent])
 
   return (

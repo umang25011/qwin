@@ -87,6 +87,7 @@ export default function EventCard({ event }: { event: EventDetails }) {
                 className="btn btn-outline-dark btn-dark btn-sm mb-0"
                 data-bs-toggle="modal"
                 data-bs-target={"#modal-default" + event.id}
+                data-backdrop="false"
                 onClick={() => {
                   setIsExpanded((val) => !val)
                 }}
