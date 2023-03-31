@@ -8,15 +8,15 @@ export default function NewHeader() {
   const [isAdmin, setIsAdmin] = useState(LOCAL_STORAGE.isAdmin())
 
   return (
-    <div className="container-fluid g-sidenav-show bg-gray-100">
+    <div className="container-fluid g-sidenav-show bg-gray-100  ">
       <CheckIfAdmin />
       <div
-        className="page-header min-height-100 border-radius-xl mt-4"
+        className="page-header min-height-50 border-radius-xl mt-4"
         style={{ backgroundImage: require("../../assets/qwin-logo.jpg"), backgroundPositionY: "50%" }}
       >
         <span className="mask bg-gradient-primary opacity-6"></span>
       </div>
-      <div className="card card-body blur shadow-blur mt-n7 overflow-hidden">
+      <div className="card card-body blur shadow-blur mt-n2 overflow-hidden">
         <div className="row gx-4">
           <div className="col-auto">
             <div className="avatar avatar-xl position-relative">
