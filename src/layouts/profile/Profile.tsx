@@ -7,6 +7,7 @@ import { store, useAppDispatch, useAppSelector } from "../../store/store"
 import Header from "../header/Header"
 import { getUserLocal, storeUser } from "../login/loginSlice"
 import { initialUserProfile, UserDetails } from "./profileSlice"
+import "./profile.css"
 
 export default function Profile() {
   const globalUser = useAppSelector((store) => store.login)
@@ -27,7 +28,7 @@ export default function Profile() {
   return (
     <React.Fragment>
       <Header />
-      <div style={{ display: "flex", gap: "10em", height: "75vh", marginTop: "1em" }}>
+      <div style={{ display: "flex", gap: "10em", height: "75vh", marginTop: "1em", justifyContent: "center" }}>
         <div className="card-body">
           <form
             onSubmit={(e) => {
@@ -35,8 +36,11 @@ export default function Profile() {
               dispatch(storeUser(user))
             }}
           >
-            <div style={{ display: "flex", gap: "10em", height: "75vh", marginTop: "1em" }}>
-              <div className="card-body">
+            <div style={{ display: "flex", gap: "10em", height: "auto", marginTop: "1em" }}>
+              <div className="inner-card-body">
+                <div className="mb-3">
+                  <h4>User Profile</h4>
+                </div>
                 <div className="mb-3">
                   <label htmlFor="student-id" className="form-label">
                     Student ID:
@@ -103,7 +107,8 @@ export default function Profile() {
                 <div className="button-group">
                   <button
                     type="submit"
-                    className="btn bg-gradient-dark w-100 my-4 mb-2"
+                    className="formbold-btn"
+                    // className="btn bg-gradient-dark w-100 my-4 mb-2"
                     onClick={(e) => {
                       e.preventDefault()
                       // dispatch(storeUser(user))
