@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import CheckIfAdmin from "../../config/CheckIfAdmin"
-import { checkIfAdmin } from "../../config/helper"
 import { useAppSelector } from "../../store/store"
 import EventCard from "../eventsList/EventCard"
 import EventList from "../eventsList/EventsList"

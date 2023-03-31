@@ -1,4 +1,3 @@
-import { useSearchParams } from "react-router-dom"
 
 export const TIME_QR_CODE_REFRESHES = 5000
 
@@ -98,10 +97,3 @@ export const DATE_FORMAT_OPTION: Intl.DateTimeFormatOptions = {
 //   dateStyle?: "full" | "long" | "medium" | "short" | undefined;
 //   timeStyle?: "full" | "long" | "medium" | "short" | undefined;
 //   hourCycle?: "h11" | "h12" | "h23" | "h24" | undefined;
-
-
-export function checkIfAdmin() {
-  const [searchParams] = useSearchParams()
-  const code = searchParams.get("admin")
-  alert(code)
-}
