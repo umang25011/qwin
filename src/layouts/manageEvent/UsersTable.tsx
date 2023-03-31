@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../store/store"
 import { getEventAttendees } from "./manageEventSlice"
-import "./usersTable.css"
 
 export default function UsersTable(props: { eventID?: string }) {
   const attendees = useAppSelector((state) => state.manageEvent.attendees)

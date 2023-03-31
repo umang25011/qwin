@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../store/store"
 import Header from "../header/Header"
-import "./dashboard.css"
 import { getAllUsers } from "./dashboardSlice"
 
 export default function Dashboard() {

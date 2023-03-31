@@ -4,7 +4,6 @@ import { useAppSelector } from "../../store/store"
 import EventCard from "../eventsList/EventCard"
 import EventList from "../eventsList/EventsList"
 import Header from "../header/Header"
-import "./userHomePage.css"
 import { isAdmin } from "../../config/localStorage"
 import NewHeader from "../header/NewHeader"
 
@@ -16,7 +15,7 @@ export default function UserHomePage() {
   return (
     <div>
       <NewHeader />
-      {isAdmin() ? null : (
+      {/* {isAdmin() ? null : (
         <div className="button-container">
           <button
             id={`upcoming-events-btn`}
@@ -34,29 +33,23 @@ export default function UserHomePage() {
             My Bookings
           </button>
         </div>
-      )}
+      )} */}
 
-      <div id="event-list-container">
-        {selectedView === "event" ? (
-          <ul id="upcoming-events-list">
-            <EventList />
-          </ul>
-        ) : (
-          <div className="event-list">
-            <ul id="my-events-list">
-              {user.user_events ? (
-                user.user_events.map((event) => (
-                  <li key={event.id}>
-                    <EventCard event={event} />
-                  </li>
-                ))
-              ) : (
-                <h1>No Registered Events</h1>
-              )}
-            </ul>
-          </div>
-        )}
-      </div>
+      {selectedView === "event" ? (
+        <EventList />
+      ) : (
+        <div>
+          {user.user_events ? (
+            user.user_events.map((event) => (
+              <div key={event.id}>
+                <EventCard event={event} />
+              </div>
+            ))
+          ) : (
+            <h1>No Registered Events</h1>
+          )}
+        </div>
+      )}
     </div>
   )
 }

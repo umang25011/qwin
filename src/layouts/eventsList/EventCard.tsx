@@ -67,26 +67,43 @@ export default function EventCard({ event }: { event: EventDetails }) {
     // </div>
 
     <div className="card card-blog card-plain">
-      <div className="position-relative">
-        <a className="d-block shadow-xl border-radius-xl">
-          <img
-            src={require("../../assets/img/home-decor-1.jpg")}
-            alt="img-blur-shadow"
-            className="img-fluid shadow border-radius-xl"
-          />
-        </a>
-      </div>
       <div className="card-body px-1 pb-0">
-        <p className="text-gradient text-dark mb-2 text-sm">Project #2</p>
-        <a href="javascript:;">
-          <h5>Modern</h5>
-        </a>
-        <p className="mb-4 text-sm">As Uber works through a huge amount of internal management turmoil.</p>
+        {/* <p className="text-gradient text-dark mb-2 text-sm">Project #2</p> */}
+        <h5>{event.title}</h5>
+        <p className="mb-4 text-sm">{new Date(event.date).toLocaleString("en-US", DATE_FORMAT_OPTION)}</p>
+        <p className="mb-4 text-sm">{event.address}</p>
         <div className="d-flex align-items-center justify-content-between">
-          <button type="button" className="btn btn-outline-primary btn-sm mb-0">
-            View Project
-          </button>
-          <div className="avatar-group mt-2"></div>
+          <span className="btn btn-outline-dark btn-dark btn-sm mb-0">
+            View Details
+          </span>
+          {isAdmin() ? (
+            <button
+              className="btn btn-outline-success btn-sm mb-0"
+              onClick={(e) => {
+                navigate("/start-verification", { state: event })
+              }}
+            >
+              Start Verification
+            </button>
+          ) : (
+            <button
+              className={`btn  btn-sm mb-0 ${isEventAttended ? "btn-outline-dark btn-white" : ""} ${
+                isEventRegistered ? "btn-outline-danger" : "btn-outline-success"
+              }`}
+              disabled={isEventAttended}
+              onClick={(e) => {
+                if (isEventRegistered) {
+                  console.log("Calling Unregister")
+                  dispatch(unregisterEvent(event, user))
+                } else {
+                  console.log("Calling Register")
+                  dispatch(registerEvent(event, user))
+                }
+              }}
+            >
+              {isEventAttended ? "Attended" : isEventRegistered ? "Cancel" : "Register"}
+            </button>
+          )}
         </div>
       </div>
     </div>

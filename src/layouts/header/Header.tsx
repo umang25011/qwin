@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import CheckIfAdmin from "../../config/CheckIfAdmin"
 import { LOCAL_STORAGE } from "../../config/localStorage"
-import "./header.css"
 
 export default function Header() {
   const navigate = useNavigate()
