@@ -8,7 +8,7 @@ export default function NewHeader() {
   const [isAdmin, setIsAdmin] = useState(LOCAL_STORAGE.isAdmin())
 
   return (
-    <div className="container-fluid g-sidenav-show bg-gray-100" style={{ color: "white" }}>
+    <div className="container-fluid g-sidenav-show">
       <CheckIfAdmin />
       <div
         className="page-header h-50 border-radius-xl mt-4"

@@ -13,8 +13,10 @@ export default function UserHomePage() {
 
   useEffect(() => {}, [])
   return (
-    <div>
+    <div className="home-page-background">
+      <div>
       <NewHeader />
+      </div>
       {/* {isAdmin() ? null : (
         <div className="button-container">
           <button

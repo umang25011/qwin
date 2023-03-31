@@ -13,7 +13,7 @@ export default function UsersTable(props: { eventID?: string }) {
   }, [])
   return (
     <div>
-      {attendees ? (
+      {attendees?.length ? (
         <div className="container-fluid">
           <div className="row">
             <div className="col-12">
@@ -58,7 +58,7 @@ export default function UsersTable(props: { eventID?: string }) {
           </div>
         </div>
       ) : (
-        <h1 style={{ padding: "2em", left: "50%" }}>No User Registered</h1>
+        <h2 style={{ padding: "2em", left: "50%" }}>No User Registered</h2>
       )}
     </div>
   )

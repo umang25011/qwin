@@ -20,6 +20,7 @@ export interface EventDetails {
   }[]
   // array of userID
   attendeed?: string[]
+  isExpired?: boolean
 }
 
 export const initialEventDetails: EventDetails = {

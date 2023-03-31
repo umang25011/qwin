@@ -31,15 +31,17 @@ export const fetchEvents = () => async (dispatch: AppDispatch) => {
     const events: EventDetails[] = []
     eventsSnapshot.forEach((doc) => {
       const data = doc.data()
-
+      const now = new Date()
       events.push({
         id: doc.id,
         title: data.title,
         description: data.description,
         address: data.address,
         date: data.date,
+        isExpired: new Date(data.date) < now,
       })
     })
+    events.sort((a, b) => Number(a.isExpired) - Number(b.isExpired))
     dispatch(setEventsList(events))
     // success
   } catch (error) {
