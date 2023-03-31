@@ -39,11 +39,36 @@ export default function Profile() {
           >
             <div style={{ display: "flex", gap: "10em", height: "auto", marginTop: "1em" }}>
               <div className="user-profile-inner-card-body">
+                  <h2 className="mb-3">User Profile</h2>
+                
                 <div className="user-profile-mb-3">
-                  <h4>User Profile</h4>
+                  <label htmlFor="disabled-name" className="user-profile-form-label">
+                    Name:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="disabled-name"
+                    name="disabled-name"
+                    value={user.name}
+                    disabled
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="disabled-email" className="user-profile-form-label">
+                    Email:
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="disabled-email"
+                    name="disabled-email"
+                    value={user.email}
+                    disabled
+                  />
                 </div>
                 <div className="user-profile-mb-3">
-                  <label htmlFor="student-id" className="form-label">
+                  <label htmlFor="student-id" className="user-profile-form-label">
                     Student ID:
                   </label>
                   <input
@@ -65,7 +90,7 @@ export default function Profile() {
                   />
                 </div>
                 <div className="user-profile-mb-3">
-                  <label htmlFor="mobile-no" className="form-label">
+                  <label htmlFor="mobile-no" className="user-profile-form-label">
                     Phone No:
                   </label>
                   <input
@@ -87,7 +112,7 @@ export default function Profile() {
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="program" className="form-label">
+                  <label htmlFor="program" className="user-profile-form-label">
                     Program:
                   </label>
                   <select
@@ -119,32 +144,7 @@ export default function Profile() {
                     Update
                   </button>
                 </div>
-                <div className="user-profile-mb-3">
-                  <label htmlFor="disabled-name" className="form-label">
-                    User Name:
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="disabled-name"
-                    name="disabled-name"
-                    value={user.name}
-                    disabled
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="disabled-email" className="form-label">
-                    User Email:
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="disabled-email"
-                    name="disabled-email"
-                    value={user.email}
-                    disabled
-                  />
-                </div>
+                
               </div>
             </div>
           </form>
