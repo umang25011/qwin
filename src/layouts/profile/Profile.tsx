@@ -10,6 +10,7 @@ import { initialUserProfile, UserDetails } from "./profileSlice"
 import "./profile.css"
 import NewHeader from "../header/NewHeader"
 import UsersTable from "../manageEvent/UsersTable"
+import EventCard from "../eventsList/EventCard"
 
 export default function Profile() {
   const globalUser = useAppSelector((store) => store.login)
@@ -30,8 +31,8 @@ export default function Profile() {
   return (
     <React.Fragment>
       <NewHeader />
-      <div style={{ display: "flex", gap: "10em", height: "75vh", marginTop: "1em", justifyContent: "center" }}>
-        <div className="user-profile-card-body">
+      <div>
+        <div className="mt-3 user-profile-card-body">
           <form
             onSubmit={(e) => {
               e.preventDefault()
@@ -40,8 +41,8 @@ export default function Profile() {
           >
             <div style={{ display: "flex", gap: "10em", height: "auto", marginTop: "1em" }}>
               <div className="user-profile-inner-card-body">
-                  <h2 className="mb-3">User Profile</h2>
-                
+                <h2 className="mb-3">User Profile</h2>
+
                 <div className="user-profile-mb-3">
                   <label htmlFor="disabled-name" className="user-profile-form-label">
                     Name:
@@ -145,10 +146,37 @@ export default function Profile() {
                     Update
                   </button>
                 </div>
-                
               </div>
             </div>
           </form>
+        </div>
+        <div className="container-fluid mt-5">
+          <div className="row">
+            <div className="col-12">
+              <div className="card mb-4">
+                <h2 className="mt-4">My Bookings ({user.user_events.length})</h2>
+                <div className="container-fluid py-4">
+                  <div className="row">
+                    {user.user_events ? (
+                      user.user_events.map((event) => (
+                        <div className="col-lg-3 mt-4" key={event.id}>
+                          <div className="card mb-4">
+                            <div className="card-body p-3">
+                              <div className="col-12 mb-xl-0 mb-4">
+                                <EventCard event={event} />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <h1>No Registered Events</h1>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </React.Fragment>
