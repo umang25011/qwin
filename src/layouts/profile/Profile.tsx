@@ -8,6 +8,7 @@ import Header from "../header/Header"
 import { getUserLocal, storeUser } from "../login/loginSlice"
 import { initialUserProfile, UserDetails } from "./profileSlice"
 import "./profile.css"
+import NewHeader from "../header/NewHeader"
 
 export default function Profile() {
   const globalUser = useAppSelector((store) => store.login)
@@ -27,9 +28,9 @@ export default function Profile() {
 
   return (
     <React.Fragment>
-      <Header />
+      <NewHeader />
       <div style={{ display: "flex", gap: "10em", height: "75vh", marginTop: "1em", justifyContent: "center" }}>
-        <div className="card-body">
+        <div className="user-profile-card-body">
           <form
             onSubmit={(e) => {
               e.preventDefault()
@@ -37,11 +38,11 @@ export default function Profile() {
             }}
           >
             <div style={{ display: "flex", gap: "10em", height: "auto", marginTop: "1em" }}>
-              <div className="inner-card-body">
-                <div className="mb-3">
+              <div className="user-profile-inner-card-body">
+                <div className="user-profile-mb-3">
                   <h4>User Profile</h4>
                 </div>
-                <div className="mb-3">
+                <div className="user-profile-mb-3">
                   <label htmlFor="student-id" className="form-label">
                     Student ID:
                   </label>
@@ -63,7 +64,7 @@ export default function Profile() {
                     onInput={(e) => e.target.setCustomValidity("")}
                   />
                 </div>
-                <div className="mb-3">
+                <div className="user-profile-mb-3">
                   <label htmlFor="mobile-no" className="form-label">
                     Phone No:
                   </label>
@@ -107,8 +108,8 @@ export default function Profile() {
                 <div className="button-group">
                   <button
                     type="submit"
-                    className="formbold-btn"
-                    // className="btn bg-gradient-dark w-100 my-4 mb-2"
+                    className="create-button btn bg-gradient-dark w-100 my-4 mb-2"
+                    // className="user-profile-btn bg-gradient-dark w-100 my-4 mb-2"
                     onClick={(e) => {
                       e.preventDefault()
                       // dispatch(storeUser(user))
@@ -118,7 +119,7 @@ export default function Profile() {
                     Update
                   </button>
                 </div>
-                <div className="mb-3">
+                <div className="user-profile-mb-3">
                   <label htmlFor="disabled-name" className="form-label">
                     User Name:
                   </label>
