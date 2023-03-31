@@ -72,7 +72,7 @@ export default function NewHeader() {
                   <li className="nav-item">
                     <span className="nav-link mb-0 px-0 py-1 alink active" onClick={() => navigate("/dashboard")}>
                       <i className="fa-solid navbar-icon fa-table alink color-white-imp"></i>
-                      <span className="ms-1 color-white-imp">Profile</span>
+                      <span className="ms-1 color-white-imp">Dashboard</span>
                     </span>
                   </li>
                 ) : (

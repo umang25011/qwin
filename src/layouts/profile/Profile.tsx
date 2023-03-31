@@ -9,6 +9,7 @@ import { getUserLocal, storeUser } from "../login/loginSlice"
 import { initialUserProfile, UserDetails } from "./profileSlice"
 import "./profile.css"
 import NewHeader from "../header/NewHeader"
+import UsersTable from "../manageEvent/UsersTable"
 
 export default function Profile() {
   const globalUser = useAppSelector((store) => store.login)

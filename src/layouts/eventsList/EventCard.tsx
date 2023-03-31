@@ -93,7 +93,7 @@ export default function EventCard({ event }: { event: EventDetails }) {
             </button>
           ) : (
             <button
-              className={`btn  btn-sm mb-0 ${isEventAttended ? "btn-outline-dark btn-white" : ""} ${
+              className={`btn btn-sm mb-0 ${isEventAttended ? "btn-outline-dark btn-white" : ""} ${
                 isEventRegistered ? "btn-outline-danger" : "btn-outline-success"
               }`}
               disabled={isEventAttended}
