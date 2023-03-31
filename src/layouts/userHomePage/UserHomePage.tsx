@@ -6,6 +6,7 @@ import EventList from "../eventsList/EventsList"
 import Header from "../header/Header"
 import "./userHomePage.css"
 import { isAdmin } from "../../config/localStorage"
+import NewHeader from "../header/NewHeader"
 
 export default function UserHomePage() {
   const [selectedView, setSeletectedView] = useState<"event" | "myEvent">("event")
@@ -14,7 +15,7 @@ export default function UserHomePage() {
   useEffect(() => {}, [])
   return (
     <div>
-      <Header />
+      <NewHeader />
       {isAdmin() ? null : (
         <div className="button-container">
           <button
