@@ -1,12 +1,6 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: #a1c4dd;
-}
+@import url("./assets/css/nucleo-icons.css");
+@import url("./assets/css/nucleo-svg.css");
+@import url("./assets/css/soft-ui-dashboard.min.css");
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -288,33 +282,6 @@ code {
   background-color: #01002a;
 }
 
-.create-button {
-  background: linear-gradient(to bottom, #071829, #023d75);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.create-button:hover {
-  background: linear-gradient(to bottom, #1f4161, #0d1a26);
-}
-
-.cancel-button {
-  background: linear-gradient(to bottom, #42100d, #8d0b09);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.cancel-button:hover {
-  background: linear-gradient(to bottom, #e53935, #f44336);
-}
 
 .event-attended-button {
   background: linear-gradient(to bottom, #0593bb, #0c86b7);

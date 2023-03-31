@@ -31,7 +31,7 @@ export default function Verification() {
   useEffect(() => {
     // React 18 update. Reference: https://dev.to/jherr/react-18-useeffect-double-call-for-apis-emergency-fix-27ee
     if (state) dispatch(storeEvent({ event: state }))
-    else navigate("/events")
+    else navigate("/")
   }, [state])
   return (
     <React.Fragment>

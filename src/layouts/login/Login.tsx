@@ -38,9 +38,9 @@ export default function Login() {
       {/* <button onClick={microsoftLogin} type="button">
         Login
       </button> */}
-      <button className="all-css-unset-login-button" onClick={microsoftLogin}>
+      <span className="btn bg-gradient-primary mt-3" onClick={microsoftLogin}>
         Login
-      </button>
+      </span>
     </div>
   )
 }

@@ -27,7 +27,6 @@ import Test from "../layouts/dashboard/Test"
 const Router = () => {
   const dispatch = useAppDispatch()
 
-
   useEffect(() => {
     const user = LOCAL_STORAGE.getUser()
     dispatch(getUserLocal())
@@ -41,8 +40,7 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Test />} />
-        <Route path="/events" element={<EventsList />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<UserHomePage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/create-event" element={<ManageEvents />} />

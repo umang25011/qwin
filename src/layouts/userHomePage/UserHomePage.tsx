@@ -6,7 +6,6 @@ import EventCard from "../eventsList/EventCard"
 import EventList from "../eventsList/EventsList"
 import Header from "../header/Header"
 import "./userHomePage.css"
-import "../eventsList/eventsList.css"
 import { isAdmin } from "../../config/localStorage"
 
 export default function UserHomePage() {

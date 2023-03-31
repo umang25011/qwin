@@ -108,7 +108,7 @@ export const loginSlice = createSlice({
           .doc(action.payload.userID)
           .set(action.payload, { merge: true })
           .then((res) => {
-            window.location.href = "/events"
+            window.location.href = "/"
           })
       }
       LOCAL_STORAGE.storeUser(state)
