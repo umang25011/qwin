@@ -73,17 +73,27 @@ export default function EventCard({ event }: { event: EventDetails }) {
           <p className="mb-4 text-sm">{new Date(event.date).toLocaleString("en-US", DATE_FORMAT_OPTION)}</p>
           <p className="mb-4 text-sm">{event.address}</p>
           <div className="d-flex align-items-center justify-content-between">
-            <span
-              className="btn btn-outline-dark btn-dark btn-sm mb-0"
-              data-bs-toggle="modal"
-              data-bs-target={"#modal-default" + event.id}
-              onClick={() => {
-                if (isAdmin()) navigate("/events/" + event.id)
-                else setIsExpanded((val) => !val)
-              }}
-            >
-              {isAdmin() ? "Edit Details" : "View Details"}
-            </span>
+            {isAdmin() ? (
+              <span
+                className="btn btn-outline-dark btn-dark btn-sm mb-0"
+                onClick={() => {
+                  navigate("/events/" + event.id)
+                }}
+              >
+                Edit Details
+              </span>
+            ) : (
+              <span
+                className="btn btn-outline-dark btn-dark btn-sm mb-0"
+                data-bs-toggle="modal"
+                data-bs-target={"#modal-default" + event.id}
+                onClick={() => {
+                  setIsExpanded((val) => !val)
+                }}
+              >
+                View Details
+              </span>
+            )}
             {isAdmin() ? (
               <button
                 className="btn btn-info btn-sm mb-0"

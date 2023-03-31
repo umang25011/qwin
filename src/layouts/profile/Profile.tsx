@@ -43,7 +43,13 @@ export default function Profile() {
               <div className="user-profile-inner-card-body">
                 <h2 className="mb-3">User Profile</h2>
 
-                <div className="user-profile-mb-3">
+                <form
+                  className="user-profile-mb-3"
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    dispatch(storeUser(user))
+                  }}
+                >
                   <label htmlFor="disabled-name" className="user-profile-form-label">
                     Name:
                   </label>
@@ -55,7 +61,7 @@ export default function Profile() {
                     value={user.name}
                     disabled
                   />
-                </div>
+                </form>
                 <div className="mb-3">
                   <label htmlFor="disabled-email" className="user-profile-form-label">
                     Email:
@@ -119,6 +125,7 @@ export default function Profile() {
                   </label>
                   <select
                     className="form-select"
+                    required
                     id="program"
                     name="program"
                     value={user.program}
@@ -137,10 +144,6 @@ export default function Profile() {
                     type="submit"
                     className="create-button btn bg-gradient-dark w-100 my-4 mb-2"
                     // className="user-profile-btn bg-gradient-dark w-100 my-4 mb-2"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      dispatch(storeUser(user))
-                    }}
                     style={{ marginTop: "3em" }}
                   >
                     Update
@@ -157,7 +160,7 @@ export default function Profile() {
                 <h2 className="mt-4">My Bookings ({user.user_events.length})</h2>
                 <div className="container-fluid py-4">
                   <div className="row">
-                    {user.user_events ? (
+                    {user.user_events?.length ? (
                       user.user_events.map((event) => (
                         <div className="col-lg-3 mt-4" key={event.id}>
                           <div className="card mb-4">
