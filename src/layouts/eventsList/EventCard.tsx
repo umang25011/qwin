@@ -73,17 +73,23 @@ export default function EventCard({ event }: { event: EventDetails }) {
         <p className="mb-4 text-sm">{new Date(event.date).toLocaleString("en-US", DATE_FORMAT_OPTION)}</p>
         <p className="mb-4 text-sm">{event.address}</p>
         <div className="d-flex align-items-center justify-content-between">
-          <span className="btn btn-outline-dark btn-dark btn-sm mb-0">
-            View Details
+          <span
+            className="btn btn-outline-dark btn-dark btn-sm mb-0"
+            onClick={() => {
+              if (isAdmin()) navigate("/events/" + event.id)
+              else setIsExpanded((val) => !val)
+            }}
+          >
+            {isAdmin() ? "Edit Details" : "View Details"}
           </span>
           {isAdmin() ? (
             <button
-              className="btn btn-outline-success btn-sm mb-0"
+              className="btn btn-info btn-sm mb-0"
               onClick={(e) => {
                 navigate("/start-verification", { state: event })
               }}
             >
-              Start Verification
+              Start QR
             </button>
           ) : (
             <button

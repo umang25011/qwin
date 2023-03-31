@@ -7,6 +7,7 @@ import { getVerificationString } from "../../config/helper"
 import QRCode from "react-qr-code"
 import "./QRCode.css"
 import Header from "../header/Header"
+import NewHeader from "../header/NewHeader"
 
 export default function Verification() {
   const { state } = useLocation()
@@ -35,14 +36,7 @@ export default function Verification() {
   }, [state])
   return (
     <React.Fragment>
-      <Header />
-      <strong className="fa-xl" style={{ display: "flex", justifyContent: "space-evenly", whiteSpace:"nowrap" }}>
-        <span>Open Qwin </span>
-        {"--->"}
-        <span>Tap QR Icon </span>
-        {"--->"}
-        <span> Scan This</span>
-      </strong>
+      <NewHeader />
       <div className="qr-code-container">
         <QRCode
           value={JSON.stringify({ eventID: verificationData.event.id, hash: verificationData.hash })}

@@ -3,6 +3,7 @@ import { toastr } from "react-redux-toastr"
 import { useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../store/store"
 import Header from "../header/Header"
+import NewHeader from "../header/NewHeader"
 import {
   deleteEvent,
   EventDetails,
@@ -38,15 +39,16 @@ export default function ManageEvents() {
 
   return (
     <div>
-      <Header />
-      <main style={{ position: "relative", top: "15em" }} className="main-content mt-0">
+      <NewHeader />
+      <main style={{ position: "relative", top: "14em" }} className="main-content mt-0">
         <section>
-          <div className="container">
-            <div className="row mt-lg-n10 mt-md-n11 mt-n10">
-              <div className="col-xl-4 col-lg-5 col-md-7 mx-auto">
+          <div className="container mb-5">
+            <div className="row mt-lg-n10 mt-md-n11 mt-n12">
+              <div className="col-xl-6 col-lg-6 col-md-7 mx-auto">
                 <div className="card z-index-0">
                   <div>
                     <div className="card-body">
+                      <h2>{event?.id ? "Update Event" : "Create Event"}</h2>
                       <form>
                         <div className="mb-3">
                           <label htmlFor="title" className="form-label">

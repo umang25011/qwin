@@ -44,24 +44,45 @@ export default function NewHeader() {
           <div className="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
             <div className="nav-wrapper position-relative end-0">
               <ul className="nav nav-pills nav-fill p-1 bg-transparent">
+
                 <li className="nav-item">
-                  <span className="nav-link mb-0 px-0 py-1 alink" onClick={() => navigate("/create-event")}>
-                    <i className="fa-solid fa-plus alink color-white-imp"></i>
-                    <span className="ms-1 color-white-imp">Create</span>
+                  <span className="nav-link mb-0 px-0 py-1 alink" onClick={() => navigate("/")}>
+                    <i className="fa-solid fa-list alink color-white-imp"></i>
+                    <span className="ms-1 color-white-imp">Events</span>
                   </span>
                 </li>
-                <li className="nav-item">
-                  <span className="nav-link mb-0 px-0 py-1 alink" onClick={() => navigate("/qr-scanner")}>
-                    <i className="fa-solid navbar-icon fa-qrcode alink color-white-imp"></i>
-                    <span className="ms-1 color-white-imp">Scan QR</span>
-                  </span>
-                </li>
-                <li className="nav-item">
-                  <span className="nav-link mb-0 px-0 py-1 alink active" onClick={() => navigate("/profile")}>
-                    <i className="fa-regular navbar-icon fa-user text-reset alink color-white-imp"></i>
-                    <span className="ms-1 color-white-imp">Profile</span>
-                  </span>
-                </li>
+
+                {isAdmin ? (
+                  <li className="nav-item">
+                    <span className="nav-link mb-0 px-0 py-1 alink" onClick={() => navigate("/create-event")}>
+                      <i className="fa-solid fa-plus alink color-white-imp"></i>
+                      <span className="ms-1 color-white-imp">Create</span>
+                    </span>
+                  </li>
+                ) : null}
+                {isAdmin ? null : (
+                  <li className="nav-item">
+                    <span className="nav-link mb-0 px-0 py-1 alink" onClick={() => navigate("/qr-scanner")}>
+                      <i className="fa-solid navbar-icon fa-qrcode alink color-white-imp"></i>
+                      <span className="ms-1 color-white-imp">Scan QR</span>
+                    </span>
+                  </li>
+                )}
+                {isAdmin ? (
+                  <li className="nav-item">
+                    <span className="nav-link mb-0 px-0 py-1 alink active" onClick={() => navigate("/dashboard")}>
+                      <i className="fa-solid navbar-icon fa-table alink color-white-imp"></i>
+                      <span className="ms-1 color-white-imp">Profile</span>
+                    </span>
+                  </li>
+                ) : (
+                  <li className="nav-item">
+                    <span className="nav-link mb-0 px-0 py-1 alink active" onClick={() => navigate("/profile")}>
+                      <i className="fa-regular navbar-icon fa-user text-reset alink color-white-imp"></i>
+                      <span className="ms-1 color-white-imp">Profile</span>
+                    </span>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
