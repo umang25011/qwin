@@ -7,6 +7,8 @@ import {
   deleteDoc,
   doc,
   getDocs,
+  orderBy,
+  query,
   setDoc,
   updateDoc,
 } from "firebase/firestore"
@@ -22,7 +24,9 @@ export const initialEventsList: EventDetails[] = []
 
 export const fetchEvents = () => async (dispatch: AppDispatch) => {
   try {
-    const eventsSnapshot = await getDocs(collection(firestoreV9, FIREBASE_COLLECTIONS.events))
+    const eventRef = collection(firestoreV9, FIREBASE_COLLECTIONS.events)
+    const q = query(eventRef, orderBy("date"))
+    const eventsSnapshot = await getDocs(q)
 
     const events: EventDetails[] = []
     eventsSnapshot.forEach((doc) => {

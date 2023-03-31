@@ -38,7 +38,7 @@ export default function Login() {
       {/* <button onClick={microsoftLogin} type="button">
         Login
       </button> */}
-      <span className="btn bg-gradient-primary mt-3" onClick={microsoftLogin}>
+      <span className="btn bg-light w-10 mt-3" style={{fontSize:"1.5em"}} onClick={microsoftLogin}>
         Login
       </span>
     </div>

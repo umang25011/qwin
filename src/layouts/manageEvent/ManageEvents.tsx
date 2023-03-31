@@ -50,7 +50,13 @@ export default function ManageEvents() {
                     <div>
                       <div className="card-body">
                         <h2>{event?.id ? "Update Event" : "Create Event"}</h2>
-                        <form>
+                        <form
+                          onSubmit={(e) => {
+                            e.preventDefault()
+                            if (event.id) dispatch(updateEvent(event))
+                            else dispatch(createEvent(event))
+                          }}
+                        >
                           <div className="mb-3">
                             <label htmlFor="title" className="form-label">
                               Title:
@@ -111,9 +117,9 @@ export default function ManageEvents() {
                               type="submit"
                               className="create-button btn bg-gradient-dark w-100 my-4 mb-2"
                               onClick={(e) => {
-                                e.preventDefault()
-                                if (event.id) dispatch(updateEvent(event))
-                                else dispatch(createEvent(event))
+                                // e.preventDefault()
+                                // if (event.id) dispatch(updateEvent(event))
+                                // else dispatch(createEvent(event))
                               }}
                             >
                               Submit
