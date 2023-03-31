@@ -106,7 +106,7 @@ export default function Profile() {
                     className="btn bg-gradient-dark w-100 my-4 mb-2"
                     onClick={(e) => {
                       e.preventDefault()
-                      dispatch(storeUser(user))
+                      // dispatch(storeUser(user))
                     }}
                     style={{ marginTop: "3em" }}
                   >
