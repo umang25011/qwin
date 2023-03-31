@@ -33,25 +33,25 @@ const EventList = () => {
     //     </ul>
     //   </div>
     // </React.Fragment>
-    <div className="g-sidenav-show bg-gray-100">
-      <div className="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
-        <div className="container-fluid py-4">
-          <div className="col-12 mt-4">
-            <div className="card mb-4">
-              <div className="card-body p-3">
-                <div className="row">
-                  {events?.length === 0 && <p>No events found.</p>}
+    <div className="g-sidenav-show">
+      <div className="main-content position-relative max-height-vh-100 h-100">
+        {events?.length === 0 && <p>No events found.</p>}
 
-                  {events
-                    ? events.map((event) => (
-                        <div className="col-xl-3 col-md-6 mb-xl-0 mb-4" key={event.id}>
+        <div className="container-fluid py-4">
+          <div className="row">
+            {events
+              ? events.map((event) => (
+                  <div className="col-lg-3 mt-4" key={event.id}>
+                    <div className="card mb-4">
+                      <div className="card-body p-3">
+                        <div className="col-12 mb-xl-0 mb-4">
                           <EventCard event={event as EventDetails} />
                         </div>
-                      ))
-                    : null}
-                </div>
-              </div>
-            </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              : null}
           </div>
         </div>
       </div>
