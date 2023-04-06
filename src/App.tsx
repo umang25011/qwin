@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <ReduxToastr
-          timeOut={5}
+          timeOut={5000}
           newestOnTop={false}
           preventDuplicates
           position="top-right"

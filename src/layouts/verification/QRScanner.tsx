@@ -18,6 +18,9 @@ export default function QrScan() {
   const user = useAppSelector((state) => state.login)
   const navigate = useNavigate()
 
+  const registeredEvents = user?.user_events?.map((item) => item.id)
+  const attendedEvents = user?.events_attended?.map((item) => item.eventID)
+
   const test = async () => {
     // Generate a random 256-bit AES encryption key
     const key = await crypto.subtle.generateKey(
@@ -59,8 +62,8 @@ export default function QrScan() {
         if (scannerRef.current) scannerRef.current.stop()
 
         // check if event is already scanned, or not registred
-        const isEventRegistered = user.user_events.map((item) => item.id).includes(parsedData.eventID)
-        const isEventAttended = user.events_attended.map((item) => item.eventID).includes(parsedData.eventID)
+        const isEventRegistered = registeredEvents?.includes(parsedData.eventID)
+        const isEventAttended = attendedEvents?.includes(parsedData.eventID)
 
         if (isEventAttended) {
           toastr.warning("Event Already Attended", "You have already attended this event")
@@ -78,7 +81,7 @@ export default function QrScan() {
         dispatch(uploadVerificationToEvent(parsedData.hash, parsedData.eventID, user, scannerRef, navigate))
       }
     } catch (error) {
-      console.log("Error Scanning QR Code")
+      console.log("Error Scanning QR Code", error)
     }
   }
 

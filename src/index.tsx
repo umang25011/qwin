@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-// import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 import './index.css';
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 
