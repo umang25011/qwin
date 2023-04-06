@@ -1,3 +1,4 @@
+import { timeStamp } from "console"
 
 export const TIME_QR_CODE_REFRESHES = 5000
 
@@ -39,12 +40,12 @@ export async function hashString(s: string): Promise<string> {
 }
 
 export async function getVerificationString(s1: string, s2: string): Promise<string> {
-  const timestamp = Date.now()
-  const interval = Math.floor(timestamp / TIME_QR_CODE_REFRESHES)
-  const concatenated = s1 + s2 + interval.toString()
+  const timestamp = new Date()
+  // const interval = Math.floor(timestamp / TIME_QR_CODE_REFRESHES)
+  // const concatenated = s1 + s2 + interval.toString()
   // return hashString(concatenated)
   // TODO: return date string directly, so we can verify time in users
-  return interval.toString()
+  return timestamp.toISOString()
 }
 
 export async function encryptJson(jsonObj: object, key: CryptoKey): Promise<string> {

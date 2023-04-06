@@ -20,14 +20,13 @@ export default function Verification() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // TODO : call the function the first time also
     if (verificationData) dispatch(startVerificationHashStrings(verificationData, intervalRef))
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current)
       intervalRef.current = undefined
     }
-  }, [verificationData])
+  }, [])
 
   useEffect(() => {
     // React 18 update. Reference: https://dev.to/jherr/react-18-useeffect-double-call-for-apis-emergency-fix-27ee

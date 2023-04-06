@@ -4,11 +4,12 @@ import QrScannerLibrary from "qr-scanner"
 // @ts-ignore
 import QrReader from "react-qr-scanner"
 import { uploadVerificationToEvent } from "./qrScannerSlice"
-import { decryptJson, encryptJson } from "../../config/helper"
+import { TIME_QR_CODE_REFRESHES, decryptJson, encryptJson } from "../../config/helper"
 import QrScanner from "qr-scanner"
 import { UserDetails } from "../profile/profileSlice"
 import { useNavigate } from "react-router-dom"
 import { toastr } from "react-redux-toastr"
+import { log } from "console"
 
 export default function QrScan() {
   const [result, setResult] = useState("")
@@ -46,6 +47,15 @@ export default function QrScan() {
       console.log("User before QR Upload: ", user)
 
       if (parsedData.hash && parsedData.eventID) {
+        const qrTime = new Date(parsedData.hash)
+        const currentTime = new Date()
+
+        const timeDiffInSeconds = currentTime.getTime() - qrTime.getTime()
+        if (timeDiffInSeconds > TIME_QR_CODE_REFRESHES) {
+          toastr.error("QR Code Expired", "Please Keep Scanning the QR Code!")
+          return
+        }
+
         if (scannerRef.current) scannerRef.current.stop()
 
         // check if event is already scanned, or not registred
@@ -59,7 +69,7 @@ export default function QrScan() {
           return
         }
         if (!isEventRegistered) {
-          toastr.error("Event Not Registered", "You have not registered this event")
+          toastr.error("Event Not Registered", "You have not registered in this event")
           scannerRef.current!.destroy()
           navigate("/")
           return
