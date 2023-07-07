@@ -14,6 +14,7 @@ import Header from "../layouts/header/Header"
 import UserHomePage from "../layouts/userHomePage/UserHomePage"
 import Dashboard from "../layouts/dashboard/Dashboard"
 import Test from "../layouts/dashboard/Test"
+import CreateProjectForm from "../layouts/DemoDay/CreateProjectForm"
 // import Dashboard from "../components/dashboard/Dashboard";
 // import NotProtectedRoute from "./NotProtectedRoute";
 // import EventDetail from "../components/event/EventDetail";
@@ -48,6 +49,7 @@ const Router = () => {
         <Route path="/start-verification" element={<Verification />} />
         <Route path="/qr-scanner" element={<QrScan />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dempday-create-project" element={<CreateProjectForm/>}/>
       </Routes>
     </BrowserRouter>
   )
