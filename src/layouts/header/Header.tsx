@@ -5,7 +5,7 @@ import { LOCAL_STORAGE } from "../../config/localStorage"
 
 export default function Header() {
   const navigate = useNavigate()
-  const [isAdmin, setIsAdmin] = useState(LOCAL_STORAGE.isAdmin())
+  const [userRole, setIsAdmin] = useState(LOCAL_STORAGE.getUserRole())
 
   return (
     <nav className="navbar navbar-expand navbar-light bg-light">
@@ -27,22 +27,22 @@ export default function Header() {
       </div>
 
       <div className="d-flex align-items-center">
-        {isAdmin ? (
+        {userRole ? (
           <i className="fa-solid fa-plus fa-2xl me-5 alink" onClick={() => navigate("/create-event")}></i>
         ) : null}
-        {isAdmin ? null : (
+        {userRole ? null : (
           <i
             className="fa-solid navbar-icon fa-qrcode fa-2xl text-reset me-5  dropdown-toggle hidden-arrow alink"
             onClick={() => navigate("/qr-scanner")}
           ></i>
         )}
-        {isAdmin ? null : (
+        {userRole ? null : (
           <i
             className="fa-regular navbar-icon fa-user text-reset fa-2xl me-3 dropdown-toggle hidden-arrow alink"
             onClick={() => navigate("/profile")}
           ></i>
         )}
-        {isAdmin ? (
+        {userRole ? (
           <i
             onClick={() => navigate("/dashboard")}
             className="fa-solid navbar-icon fa-table fa-2xl me-3 dropdown-toggle hidden-arrow alink"

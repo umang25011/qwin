@@ -98,3 +98,9 @@ export const DATE_FORMAT_OPTION: Intl.DateTimeFormatOptions = {
 //   dateStyle?: "full" | "long" | "medium" | "short" | undefined;
 //   timeStyle?: "full" | "long" | "medium" | "short" | undefined;
 //   hourCycle?: "h11" | "h12" | "h23" | "h24" | undefined;
+
+export const USER_ROLES = {
+  Student: "Student", 
+  Professor: "Professor", 
+  Admin: "Admin"
+} as const

@@ -2,10 +2,11 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import CheckIfAdmin from "../../config/CheckIfAdmin"
 import { LOCAL_STORAGE } from "../../config/localStorage"
+import { USER_ROLES } from "../../config/helper"
 
 export default function NewHeader() {
   const navigate = useNavigate()
-  const [isAdmin, setIsAdmin] = useState(LOCAL_STORAGE.isAdmin())
+  const [userRole, setIsAdmin] = useState(LOCAL_STORAGE.getUserRole())
 
   return (
     <div className="container-fluid g-sidenav-show">
@@ -44,7 +45,6 @@ export default function NewHeader() {
           <div className="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
             <div className="nav-wrapper position-relative end-0">
               <ul className="nav nav-pills nav-fill p-1 bg-transparent">
-
                 <li className="nav-item">
                   <span className="nav-link mb-0 px-0 py-1 alink" onClick={() => navigate("/")}>
                     <i className="fa-solid fa-list alink color-white-imp"></i>
@@ -52,7 +52,7 @@ export default function NewHeader() {
                   </span>
                 </li>
 
-                {isAdmin ? (
+                {userRole === USER_ROLES.Admin ? (
                   <li className="nav-item">
                     <span className="nav-link mb-0 px-0 py-1 alink" onClick={() => navigate("/create-event")}>
                       <i className="fa-solid fa-plus alink color-white-imp"></i>
@@ -60,29 +60,29 @@ export default function NewHeader() {
                     </span>
                   </li>
                 ) : null}
-                {isAdmin ? null : (
+                {userRole === USER_ROLES.Student ? (
                   <li className="nav-item">
                     <span className="nav-link mb-0 px-0 py-1 alink" onClick={() => navigate("/qr-scanner")}>
                       <i className="fa-solid navbar-icon fa-qrcode alink color-white-imp"></i>
                       <span className="ms-1 color-white-imp">Scan QR</span>
                     </span>
                   </li>
-                )}
-                {isAdmin ? (
+                ) : null}
+                {userRole === USER_ROLES.Admin ? (
                   <li className="nav-item">
                     <span className="nav-link mb-0 px-0 py-1 alink active" onClick={() => navigate("/dashboard")}>
                       <i className="fa-solid navbar-icon fa-table alink color-white-imp"></i>
                       <span className="ms-1 color-white-imp">Dashboard</span>
                     </span>
                   </li>
-                ) : (
+                ) : userRole === USER_ROLES.Student ? (
                   <li className="nav-item">
                     <span className="nav-link mb-0 px-0 py-1 alink active" onClick={() => navigate("/profile")}>
                       <i className="fa-regular navbar-icon fa-user text-reset alink color-white-imp"></i>
                       <span className="ms-1 color-white-imp">Profile</span>
                     </span>
                   </li>
-                )}
+                ) : null}
               </ul>
             </div>
           </div>

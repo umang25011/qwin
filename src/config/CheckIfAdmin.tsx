@@ -6,12 +6,8 @@ export default function CheckIfAdmin() {
   const [searchParams] = useSearchParams()
   const code = searchParams.get("admin")
 
-  if (code === "true") {
-    LOCAL_STORAGE.isAdmin(true)
-  } else if (code === "false") {
-    LOCAL_STORAGE.isAdmin(false)
-  } else {
-  }
+  const userRole = LOCAL_STORAGE.getUserRole()
+  console.log("User Role: ", userRole)
 
   useEffect(() => {}, [])
   return <React.Fragment></React.Fragment>

@@ -4,7 +4,7 @@ import { useAppSelector } from "../../store/store"
 import EventCard from "../eventsList/EventCard"
 import EventList from "../eventsList/EventsList"
 import Header from "../header/Header"
-import { isAdmin } from "../../config/localStorage"
+import { getUserRole } from "../../config/localStorage"
 import NewHeader from "../header/NewHeader"
 
 export default function UserHomePage() {

@@ -3,7 +3,7 @@ import { getAuth, getRedirectResult, signInWithPopup } from "firebase/auth"
 import { doc, getDoc } from "firebase/firestore"
 import * as firebase from "firebase/compat/app"
 import { setLoading } from "../../config/commonSlice"
-import { FIREBASE_COLLECTIONS } from "../../config/helper"
+import { FIREBASE_COLLECTIONS, USER_ROLES } from "../../config/helper"
 import { firestore, firestoreV9, microsoftProvider } from "../../config/IntialiseFirebase"
 import { LOCAL_STORAGE } from "../../config/localStorage"
 import { AppDispatch } from "../../store/store"
@@ -29,7 +29,10 @@ export const getUserFromFirestore = (userID: string) => async (dispatch: AppDisp
         events_attended: data.events_attended,
         user_events: data.user_events,
         userID: data.userID,
+        userRole: data.userRole || USER_ROLES.Student
       }
+      console.log("User Details: ", user);
+      
       dispatch(storeUserLocal(user))
       window.location.href = "/"
     } else throw Error("User Not Found")
@@ -75,6 +78,7 @@ export const handleLoginFlow = () => async (dispatch: AppDispatch) => {
             createdAt: firebase.default.firestore.FieldValue.serverTimestamp(),
             email: user.email,
             userID: user.userID,
+            userRole: USER_ROLES.Student
           },
           { merge: true }
         )

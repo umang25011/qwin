@@ -1,9 +1,10 @@
 import { UserDetails } from "../layouts/profile/profileSlice"
+import { USER_ROLES } from "./helper"
 
 export const LOCAL_STORAGE_KEYS = {
   user: "user",
   loading: "UserLoading",
-  admin: "isAdmin",
+  userRole: "UserRole",
 }
 
 export function storeUser(user: UserDetails) {
@@ -15,7 +16,7 @@ export function getUser() {
     let tempData = localStorage.getItem("user")
     if (tempData) {
       tempData = JSON.parse(tempData)
-      return (tempData as unknown) as UserDetails
+      return tempData as unknown as UserDetails
     }
     return null
   } catch (error) {
@@ -44,20 +45,20 @@ export function isLoading(loading?: boolean) {
   }
 }
 
-export function isAdmin(admin?: boolean) {
-  if (admin !== undefined) {
-    localStorage.setItem(LOCAL_STORAGE_KEYS.admin, JSON.stringify({ [LOCAL_STORAGE_KEYS.admin]: admin }))
-    return admin
+export function getUserRole(userRole?: string): string {
+  if (userRole !== undefined) {
+    localStorage.setItem(LOCAL_STORAGE_KEYS.userRole, JSON.stringify({ [LOCAL_STORAGE_KEYS.userRole]: userRole }))
+    return userRole
   } else {
-    const temp = localStorage.getItem(LOCAL_STORAGE_KEYS.admin)
+    const temp = localStorage.getItem(LOCAL_STORAGE_KEYS.userRole)
     try {
-      const loadingState = JSON.parse(temp || "{}")
-      if (loadingState[LOCAL_STORAGE_KEYS.admin]) return true
-      else return false
+      const userRole = JSON.parse(temp || "{}")
+      if (userRole[LOCAL_STORAGE_KEYS.userRole]) return userRole[LOCAL_STORAGE_KEYS.userRole]
+      else return USER_ROLES.Student
     } catch (e) {
-      return false
+      return USER_ROLES.Student
     }
   }
 }
 
-export const LOCAL_STORAGE = { storeUser, getUser, isLoading, isAdmin }
+export const LOCAL_STORAGE = { storeUser, getUser, isLoading, getUserRole }

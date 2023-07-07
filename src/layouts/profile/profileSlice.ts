@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { EventDetails } from "../manageEvent/manageEventSlice"
+import { USER_ROLES } from "../../config/helper"
 
 export interface UserDetails {
   name: string
@@ -8,6 +9,7 @@ export interface UserDetails {
   mobileNo: string
   userID: string
   studentID: string
+  userRole: string
   user_events: EventDetails[]
   events_attended: {
     eventID: string
@@ -19,6 +21,7 @@ export const initialUserProfile: UserDetails = {
   email: "",
   userID: "",
   mobileNo: "",
+  userRole: USER_ROLES.Student,
   program: "MAC Summer 22",
   studentID: "",
   user_events: [],
