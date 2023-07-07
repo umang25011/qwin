@@ -45,7 +45,15 @@ export default function NewHeader() {
           <div className="col-lg-6 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
             <div className="nav-wrapper position-relative end-0">
               <ul className="nav nav-pills nav-fill p-1 bg-transparent">
-                
+                {userRole === USER_ROLES.Professor || userRole === USER_ROLES.Admin ? (
+                  <li className="nav-item">
+                    <span className="nav-link mb-0 px-0 py-1 alink" onClick={() => navigate("/demoday-choose-project")}>
+                      <i className="fa-solid fa-id-card fa-beat-fade alink color-white-imp"></i>
+                      <span className="ms-1 color-white-imp">DemoDay</span>
+                    </span>
+                  </li>
+                ) : null}
+
                 {userRole === USER_ROLES.Student ? (
                   <li className="nav-item">
                     <span className="nav-link mb-0 px-0 py-1 alink" onClick={() => navigate("/dempday-create-project")}>

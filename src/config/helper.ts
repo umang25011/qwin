@@ -4,7 +4,6 @@ export const TIME_QR_CODE_REFRESHES = 5000
 
 // TODO : store entire state in LocalStorage
 
-
 export const FIREBASE_COLLECTIONS = {
   users: "users",
   usersSubEvent: "user_events",
@@ -100,7 +99,14 @@ export const DATE_FORMAT_OPTION: Intl.DateTimeFormatOptions = {
 //   hourCycle?: "h11" | "h12" | "h23" | "h24" | undefined;
 
 export const USER_ROLES = {
-  Student: "Student", 
-  Professor: "Professor", 
-  Admin: "Admin"
+  Student: "Student",
+  Professor: "Professor",
+  Admin: "Admin",
 } as const
+
+export interface TeamProject {
+  teamName: string
+  projectTitle: string
+  projectDescription: string
+  participants: string[]
+}
