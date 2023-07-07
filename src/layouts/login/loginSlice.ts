@@ -119,6 +119,7 @@ export const loginSlice = createSlice({
     },
     storeUserLocal: (state, action: PayloadAction<UserDetails>) => {
       LOCAL_STORAGE.storeUser(action.payload)
+      LOCAL_STORAGE.getUserRole(action.payload.userRole)
       state = action.payload
       return { ...state }
     },

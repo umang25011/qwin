@@ -4,11 +4,15 @@ import "./App.css"
 import { Provider } from "react-redux"
 import { store, useAppDispatch } from "./store/store"
 import ReduxToastr from "react-redux-toastr"
-import { LOCAL_STORAGE } from "./config/localStorage"
+import { LOCAL_STORAGE, LOCAL_STORAGE_KEYS } from "./config/localStorage"
 
 function App() {
   useEffect(() => {
     LOCAL_STORAGE.isLoading(false)
+
+    return () => {
+      // localStorage.setItem(LOCAL_STORAGE_KEYS.userRole, "")
+    }
   }, [])
   return (
     <div className="App">

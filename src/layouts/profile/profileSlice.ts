@@ -21,7 +21,7 @@ export const initialUserProfile: UserDetails = {
   email: "",
   userID: "",
   mobileNo: "",
-  userRole: USER_ROLES.Student,
+  userRole: "",
   program: "MAC Summer 22",
   studentID: "",
   user_events: [],

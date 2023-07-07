@@ -7,7 +7,7 @@ import Login from "../layouts/login/Login"
 import ManageEvents from "../layouts/manageEvent/ManageEvents"
 import Profile from "../layouts/profile/Profile"
 import { useAppDispatch, useAppSelector } from "../store/store"
-import { getUserLocal } from "../layouts/login/loginSlice"
+import { getUserFromFirestore, getUserLocal } from "../layouts/login/loginSlice"
 import Verification from "../layouts/verification/Verification"
 import QrScan from "../layouts/verification/QRScanner"
 import Header from "../layouts/header/Header"
@@ -15,6 +15,7 @@ import UserHomePage from "../layouts/userHomePage/UserHomePage"
 import Dashboard from "../layouts/dashboard/Dashboard"
 import Test from "../layouts/dashboard/Test"
 import CreateProjectForm from "../layouts/DemoDay/CreateProjectForm"
+import ChooseProjects from "../layouts/DemoDay/ChooseProjects"
 // import Dashboard from "../components/dashboard/Dashboard";
 // import NotProtectedRoute from "./NotProtectedRoute";
 // import EventDetail from "../components/event/EventDetail";
@@ -30,7 +31,10 @@ const Router = () => {
 
   useEffect(() => {
     const user = LOCAL_STORAGE.getUser()
-    dispatch(getUserLocal())
+    const userRole = LOCAL_STORAGE.getUserRole()
+    if (user && !userRole) dispatch(getUserFromFirestore(user.userID))
+
+    // dispatch(getUserLocal())
     if (user === null || !user.email) {
       if (window.location.pathname !== "/login") window.location.href = "/login"
     } else if (!user.studentID) {
@@ -50,6 +54,7 @@ const Router = () => {
         <Route path="/qr-scanner" element={<QrScan />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dempday-create-project" element={<CreateProjectForm/>}/>
+        <Route path="/demoday-choose-project" element={<ChooseProjects/>}/>
       </Routes>
     </BrowserRouter>
   )

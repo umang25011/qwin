@@ -67,7 +67,7 @@ const ChooseProjects = () => {
                               <td>{team.teamName}</td>
                               <td>{team.projectTitle}</td>
                               <td>{team.projectDescription}</td>
-                              <td>{team.participants}</td>
+                              <td>{team.participants.join(", ")}</td>
                             </tr>
                           ))}
                         </tbody>

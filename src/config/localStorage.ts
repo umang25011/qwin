@@ -54,10 +54,23 @@ export function getUserRole(userRole?: string): string {
     try {
       const userRole = JSON.parse(temp || "{}")
       if (userRole[LOCAL_STORAGE_KEYS.userRole]) return userRole[LOCAL_STORAGE_KEYS.userRole]
-      else return USER_ROLES.Student
+      else return ""
     } catch (e) {
-      return USER_ROLES.Student
+      return ""
     }
+  }
+}
+
+export function checkIfUserRoleStored(): boolean {
+  try {
+    const temp = localStorage.getItem(LOCAL_STORAGE_KEYS.userRole)
+    if (!temp) return false
+
+    const parsedTemp = JSON.parse(temp || "")
+    if (!parsedTemp || !parsedTemp[LOCAL_STORAGE_KEYS.userRole]) return false
+    else return true
+  } catch (error) {
+    return false
   }
 }
 
