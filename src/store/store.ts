@@ -9,7 +9,7 @@ import eventsListReducer from "../layouts/eventsList/eventsListSlice"
 import verificationReducer from "../layouts/verification/verificationSlice"
 import qrScannerSlice from "../layouts/verification/qrScannerSlice"
 import dashboardSlice from "../layouts/dashboard/dashboardSlice"
-
+import teamSlice from "../layouts/DemoDay/CreateProjectFormSlice"
 export const store = configureStore({
   reducer: {
     login: loginReducer,
@@ -20,6 +20,7 @@ export const store = configureStore({
     verification: verificationReducer,
     qrScanner: qrScannerSlice,
     dashboard: dashboardSlice,
+    team: teamSlice,
   },
 })
 
