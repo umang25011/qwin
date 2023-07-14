@@ -29,12 +29,12 @@ export const getUserFromFirestore = (userID: string) => async (dispatch: AppDisp
         events_attended: data.events_attended,
         user_events: data.user_events,
         userID: data.userID,
-        userRole: data.userRole || USER_ROLES.Student
+        userRole: data.userRole || USER_ROLES.Student,
       }
-      console.log("User Details: ", user);
-      
+      console.log("User Details: ", user)
+
       dispatch(storeUserLocal(user))
-      window.location.href = "/"
+      if (window.location.pathname !== "/") window.location.href = "/"
     } else throw Error("User Not Found")
   } catch (error) {
     console.log("Error Getting User From Firestore", error)
@@ -78,7 +78,7 @@ export const handleLoginFlow = () => async (dispatch: AppDispatch) => {
             createdAt: firebase.default.firestore.FieldValue.serverTimestamp(),
             email: user.email,
             userID: user.userID,
-            userRole: USER_ROLES.Student
+            userRole: USER_ROLES.Student,
           },
           { merge: true }
         )
@@ -133,13 +133,7 @@ export const loginSlice = createSlice({
   },
 })
 
-export const {
-  loginError,
-  loginSuccess,
-  loginWithMicrosoft,
-  storeUser,
-  getUserLocal,
-  storeUserLocal,
-} = loginSlice.actions
+export const { loginError, loginSuccess, loginWithMicrosoft, storeUser, getUserLocal, storeUserLocal } =
+  loginSlice.actions
 
 export default loginSlice.reducer

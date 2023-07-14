@@ -30,11 +30,6 @@ const Router = () => {
   const user = LOCAL_STORAGE.getUser()
 
   useEffect(() => {
-    const userRole = LOCAL_STORAGE.getUserRole()
-
-    if (user && userRole === USER_ROLES.Wait) {
-      dispatch(getUserFromFirestore(user.userID))
-    }
 
     // dispatch(getUserLocal())
     if (user === null || !user.email) {
@@ -43,8 +38,7 @@ const Router = () => {
       if (window.location.pathname !== "/profile") window.location.href = "/profile"
     }
 
-    return () => {
-    }
+    return () => {}
   }, [])
 
   return (
