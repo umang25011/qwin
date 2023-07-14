@@ -5,7 +5,7 @@ import Dashboard from "../layouts/dashboard/Dashboard"
 import ChooseProjects from "../layouts/DemoDay/ChooseProjects"
 import CreateProjectForm from "../layouts/DemoDay/CreateProjectForm"
 import Login from "../layouts/login/Login"
-import { getUserFromFirestore } from "../layouts/login/loginSlice"
+import { getUserFromFirestore, getUserLocal } from "../layouts/login/loginSlice"
 import ManageEvents from "../layouts/manageEvent/ManageEvents"
 import Profile from "../layouts/profile/Profile"
 import UserHomePage from "../layouts/userHomePage/UserHomePage"
@@ -30,10 +30,10 @@ const Router = () => {
   useEffect(() => {
     const user = LOCAL_STORAGE.getUser()
     if (user) dispatch(getUserFromFirestore(user.userID))
-    // dispatch(getUserLocal())
+    dispatch(getUserLocal())
     if (user === null || !user.email) {
       if (window.location.pathname !== "/login") window.location.href = "/login"
-    } else if (!user.studentID) {
+    } else if (user && !user.studentID) {
       if (window.location.pathname !== "/profile") window.location.href = "/profile"
     }
 

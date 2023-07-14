@@ -152,7 +152,7 @@ export default function Profile() {
           <div className="row">
             <div className="col-12">
               <div className="card mb-4">
-                <h2 className="mt-4">My Bookings ({user.user_events.length})</h2>
+                {user.user_events?.length ? <h2 className="mt-4">My Bookings ({user.user_events?.length})</h2> : null}
                 <div className="container-fluid py-4">
                   <div className="row">
                     {user.user_events?.length ? (

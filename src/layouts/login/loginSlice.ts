@@ -34,7 +34,6 @@ export const getUserFromFirestore = (userID: string) => async (dispatch: AppDisp
       console.log("User Details: ", user)
 
       dispatch(storeUserLocal(user))
-      if (window.location.pathname !== "/") window.location.href = "/"
     } else throw Error("User Not Found")
   } catch (error) {
     console.log("Error Getting User From Firestore", error)
