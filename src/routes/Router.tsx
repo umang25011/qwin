@@ -27,10 +27,9 @@ import { USER_ROLES } from "../config/helper"
 const Router = () => {
   const dispatch = useAppDispatch()
 
-  const user = LOCAL_STORAGE.getUser()
-
   useEffect(() => {
-
+    const user = LOCAL_STORAGE.getUser()
+    if (user) dispatch(getUserFromFirestore(user.userID))
     // dispatch(getUserLocal())
     if (user === null || !user.email) {
       if (window.location.pathname !== "/login") window.location.href = "/login"
