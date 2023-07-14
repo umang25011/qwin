@@ -104,12 +104,15 @@ export const loginSlice = createSlice({
     storeUser: (state, action: PayloadAction<undefined | UserDetails>) => {
       if (action.payload) {
         state = action.payload
+        if (!action.payload.events_attended) state.events_attended = []
+        if (!action.payload.user_events) state.user_events = []
+        if (!action.payload.program) state.program = ""
         console.log(action.payload)
 
         firestore
           .collection("users")
           .doc(action.payload.userID)
-          .set(action.payload, { merge: true })
+          .set(state, { merge: true })
           .then((res) => {
             window.location.href = "/"
           })
