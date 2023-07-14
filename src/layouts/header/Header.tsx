@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import CheckIfAdmin from "../../config/CheckIfAdmin"
 import { LOCAL_STORAGE } from "../../config/localStorage"
 
 export default function Header() {
@@ -9,7 +8,6 @@ export default function Header() {
 
   return (
     <nav className="navbar navbar-expand navbar-light bg-light">
-      <CheckIfAdmin />
       <div className="navbar-collapse" id="navbarSupportedContent">
         {/* <a className="navbar-brand" href="/">
           <img src={require("../../assets/qwin-logo.jpg")} height="auto" width={"40"} alt="Qwin Logo" />

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { DATE_FORMAT_OPTION } from "../../config/helper"
+import { DATE_FORMAT_OPTION, USER_ROLES } from "../../config/helper"
 import { getUserRole } from "../../config/localStorage"
 import { useAppDispatch, useAppSelector } from "../../store/store"
 import { EventDetails } from "../manageEvent/manageEventSlice"
@@ -11,6 +11,7 @@ export default function EventCard({ event }: { event: EventDetails }) {
   const navigate = useNavigate()
 
   const user = useAppSelector((state) => state.login)
+  const userRole = getUserRole()
   const isEventRegistered = user.user_events ? user.user_events.map((item) => item.id).includes(event.id) : false
   const isEventAttended = user.events_attended
     ? user.events_attended.map((item) => item.eventID).includes(event.id)
@@ -73,7 +74,7 @@ export default function EventCard({ event }: { event: EventDetails }) {
           <p className="mb-4 text-sm">{new Date(event.date).toLocaleString("en-US", DATE_FORMAT_OPTION)}</p>
           <p className="mb-4 text-sm">{event.address}</p>
           <div className="d-flex align-items-center justify-content-between">
-            {getUserRole() ? (
+            {userRole === USER_ROLES.Admin ? (
               <span
                 className="btn btn-outline-dark btn-dark btn-sm mb-0"
                 onClick={() => {
@@ -82,7 +83,7 @@ export default function EventCard({ event }: { event: EventDetails }) {
               >
                 Edit Details
               </span>
-            ) : (
+            ) : userRole === USER_ROLES.Student ? (
               <span
                 className="btn btn-outline-dark btn-dark btn-sm mb-0"
                 data-bs-toggle="modal"
@@ -94,8 +95,9 @@ export default function EventCard({ event }: { event: EventDetails }) {
               >
                 View Details
               </span>
-            )}
-            {getUserRole() ? (
+            ) : null}
+
+            {userRole === USER_ROLES.Admin ? (
               <button
                 className="btn btn-info btn-sm mb-0"
                 onClick={(e) => {
@@ -104,7 +106,7 @@ export default function EventCard({ event }: { event: EventDetails }) {
               >
                 Start QR
               </button>
-            ) : (
+            ) : userRole === USER_ROLES.Student ? (
               <button
                 className={`btn btn-sm mb-0 ${isEventAttended ? "btn-outline-dark btn-white" : ""}
               ${event.isExpired ? "btn-outline-dark" : ""}
@@ -122,7 +124,7 @@ export default function EventCard({ event }: { event: EventDetails }) {
               >
                 {isEventAttended ? "Attended" : event.isExpired ? "Expired" : isEventRegistered ? "Cancel" : "Register"}
               </button>
-            )}
+            ) : null}
           </div>
         </div>
       </div>

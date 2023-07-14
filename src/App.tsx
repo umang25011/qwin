@@ -5,13 +5,14 @@ import { Provider } from "react-redux"
 import { store, useAppDispatch } from "./store/store"
 import ReduxToastr from "react-redux-toastr"
 import { LOCAL_STORAGE, LOCAL_STORAGE_KEYS } from "./config/localStorage"
+import { USER_ROLES } from "./config/helper"
 
 function App() {
   useEffect(() => {
     LOCAL_STORAGE.isLoading(false)
-
+    
     return () => {
-      // localStorage.setItem(LOCAL_STORAGE_KEYS.userRole, "")
+      if (LOCAL_STORAGE.getUserRole() !== USER_ROLES.Wait) localStorage.setItem(LOCAL_STORAGE_KEYS.userRole, "")
     }
   }, [])
   return (

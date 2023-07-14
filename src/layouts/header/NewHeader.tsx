@@ -1,16 +1,15 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import CheckIfAdmin from "../../config/CheckIfAdmin"
 import { LOCAL_STORAGE } from "../../config/localStorage"
 import { USER_ROLES } from "../../config/helper"
 
 export default function NewHeader() {
   const navigate = useNavigate()
   const [userRole, setIsAdmin] = useState(LOCAL_STORAGE.getUserRole())
-
+  console.log("User Role: ", userRole);
+  
   return (
     <div className="container-fluid g-sidenav-show">
-      <CheckIfAdmin />
       <div
         className="page-header h-50 border-radius-xl mt-4"
         style={{ backgroundImage: require("../../assets/qwin-logo.jpg"), backgroundPositionY: "50%", height: "1em" }}

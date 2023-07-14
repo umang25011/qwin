@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react"
-import CheckIfAdmin from "../../config/CheckIfAdmin"
+import { useEffect, useState } from "react"
 import { useAppSelector } from "../../store/store"
 import EventCard from "../eventsList/EventCard"
 import EventList from "../eventsList/EventsList"
-import Header from "../header/Header"
-import { getUserRole } from "../../config/localStorage"
 import NewHeader from "../header/NewHeader"
 
 export default function UserHomePage() {

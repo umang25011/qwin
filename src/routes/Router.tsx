@@ -1,21 +1,19 @@
-import React, { useEffect } from "react"
-import { BrowserRouter, Navigate, redirect, Route, Routes, useNavigate, useSearchParams } from "react-router-dom"
+import { useEffect, useRef } from "react"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { LOCAL_STORAGE } from "../config/localStorage"
-import PrivateRoute from "../config/PrivateRoute"
-import EventsList from "../layouts/eventsList/EventsList"
+import Dashboard from "../layouts/dashboard/Dashboard"
+import ChooseProjects from "../layouts/DemoDay/ChooseProjects"
+import CreateProjectForm from "../layouts/DemoDay/CreateProjectForm"
 import Login from "../layouts/login/Login"
+import { getUserFromFirestore } from "../layouts/login/loginSlice"
 import ManageEvents from "../layouts/manageEvent/ManageEvents"
 import Profile from "../layouts/profile/Profile"
-import { useAppDispatch, useAppSelector } from "../store/store"
-import { getUserFromFirestore, getUserLocal } from "../layouts/login/loginSlice"
-import Verification from "../layouts/verification/Verification"
-import QrScan from "../layouts/verification/QRScanner"
-import Header from "../layouts/header/Header"
 import UserHomePage from "../layouts/userHomePage/UserHomePage"
-import Dashboard from "../layouts/dashboard/Dashboard"
-import Test from "../layouts/dashboard/Test"
-import CreateProjectForm from "../layouts/DemoDay/CreateProjectForm"
-import ChooseProjects from "../layouts/DemoDay/ChooseProjects"
+import QrScan from "../layouts/verification/QRScanner"
+import Verification from "../layouts/verification/Verification"
+import { useAppDispatch } from "../store/store"
+import { log } from "console"
+import { USER_ROLES } from "../config/helper"
 // import Dashboard from "../components/dashboard/Dashboard";
 // import NotProtectedRoute from "./NotProtectedRoute";
 // import EventDetail from "../components/event/EventDetail";
@@ -29,16 +27,24 @@ import ChooseProjects from "../layouts/DemoDay/ChooseProjects"
 const Router = () => {
   const dispatch = useAppDispatch()
 
+  const user = LOCAL_STORAGE.getUser()
+
   useEffect(() => {
-    const user = LOCAL_STORAGE.getUser()
     const userRole = LOCAL_STORAGE.getUserRole()
-    if (user && !userRole) dispatch(getUserFromFirestore(user.userID))
+
+    if (user && userRole === USER_ROLES.Wait) {
+      dispatch(getUserFromFirestore(user.userID))
+    }
 
     // dispatch(getUserLocal())
     if (user === null || !user.email) {
       if (window.location.pathname !== "/login") window.location.href = "/login"
     } else if (!user.studentID) {
       if (window.location.pathname !== "/profile") window.location.href = "/profile"
+    }
+
+    return () => {
+      LOCAL_STORAGE.getUserRole(USER_ROLES.Wait)
     }
   }, [])
 
@@ -53,8 +59,8 @@ const Router = () => {
         <Route path="/start-verification" element={<Verification />} />
         <Route path="/qr-scanner" element={<QrScan />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dempday-create-project" element={<CreateProjectForm/>}/>
-        <Route path="/demoday-choose-project" element={<ChooseProjects/>}/>
+        <Route path="/dempday-create-project" element={<CreateProjectForm />} />
+        <Route path="/demoday-choose-project" element={<ChooseProjects />} />
       </Routes>
     </BrowserRouter>
   )

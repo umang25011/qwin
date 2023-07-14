@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../store/store"
-import Header from "../header/Header"
 import NewHeader from "../header/NewHeader"
 import { getAllUsers } from "./dashboardSlice"
 

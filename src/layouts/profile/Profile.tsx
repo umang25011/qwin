@@ -1,16 +1,11 @@
-import React, { useState } from "react"
-import { useEffect } from "react"
-import { redirect } from "react-router-dom"
+import React, { useEffect, useState } from "react"
 // import { Card, Dropdown, Form } from "semantic-ui-react"
-import { SelectOption, TextInput } from "../../config/FormComponents"
-import { store, useAppDispatch, useAppSelector } from "../../store/store"
-import Header from "../header/Header"
-import { getUserLocal, storeUser } from "../login/loginSlice"
-import { initialUserProfile, UserDetails } from "./profileSlice"
-import "./profile.css"
-import NewHeader from "../header/NewHeader"
-import UsersTable from "../manageEvent/UsersTable"
+import { useAppDispatch, useAppSelector } from "../../store/store"
 import EventCard from "../eventsList/EventCard"
+import NewHeader from "../header/NewHeader"
+import { getUserLocal, storeUser } from "../login/loginSlice"
+import "./profile.css"
+import { UserDetails } from "./profileSlice"
 
 export default function Profile() {
   const globalUser = useAppSelector((store) => store.login)
