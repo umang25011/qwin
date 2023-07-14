@@ -10,10 +10,6 @@ import { USER_ROLES } from "./config/helper"
 function App() {
   useEffect(() => {
     LOCAL_STORAGE.isLoading(false)
-    
-    return () => {
-      if (LOCAL_STORAGE.getUserRole() !== USER_ROLES.Wait) localStorage.setItem(LOCAL_STORAGE_KEYS.userRole, "")
-    }
   }, [])
   return (
     <div className="App">

@@ -44,7 +44,6 @@ const Router = () => {
     }
 
     return () => {
-      LOCAL_STORAGE.getUserRole(USER_ROLES.Wait)
     }
   }, [])
 
