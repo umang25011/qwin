@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { collection, getDocs } from "firebase/firestore"
 import { firestoreV9 } from "../../config/IntialiseFirebase"
 import { TeamProject } from "../../config/helper"
 import NewHeader from "../header/NewHeader"
+import CSVDownload from "../../config/CSVFileDownload"
 
 const ChooseProjects = () => {
   const [teamData, setTeamData] = useState<TeamProject[]>([])
+  const csvRef = useRef<any>(null)
 
   useEffect(() => {
     const fetchTeamData = async () => {
@@ -68,11 +70,36 @@ const ChooseProjects = () => {
                               <td>{team.projectTitle}</td>
                               <td>{team.participants.join(", ")}</td>
                               {/* <td>{team.projectDescription}</td> */}
-                              <td style={{ whiteSpace: "pre-line", textAlign: "justify" }}>{team.projectDescription}</td>
+                              <td style={{ whiteSpace: "pre-line", textAlign: "justify" }}>
+                                {team.projectDescription}
+                              </td>
                             </tr>
                           ))}
                         </tbody>
                       </table>
+                      {teamData?.length ? (
+                        <button
+                          type="button"
+                          className="cancel-button btn bg-gradient-success my-4 mb-2"
+                          onClick={(e) => {
+                            csvRef.current?.link.click()
+                          }}
+                        >
+                          Download CSV{" "}
+                          <CSVDownload
+                            csvRef={csvRef}
+                            filename="Demoday Teams.xlsx"
+                            data={[["Team Name", "Project Title", "Participants", "Description"]].concat(
+                              teamData.map((details) => [
+                                details.teamName,
+                                details.projectTitle,
+                                details.participants.join(", "),
+                                details.projectDescription,
+                              ])
+                            )}
+                          />
+                        </button>
+                      ) : null}
                     </div>
                   </div>
                 </div>
