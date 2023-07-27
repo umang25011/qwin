@@ -16,6 +16,7 @@ import Dashboard from "../layouts/dashboard/Dashboard"
 import Test from "../layouts/dashboard/Test"
 import CreateProjectForm from "../layouts/DemoDay/CreateProjectForm"
 import ChooseProjects from "../layouts/DemoDay/ChooseProjects"
+import DemodaypageComponant from "../layouts/DemodayPage/DemodaypageComponant"
 // import Dashboard from "../components/dashboard/Dashboard";
 // import NotProtectedRoute from "./NotProtectedRoute";
 // import EventDetail from "../components/event/EventDetail";
@@ -55,6 +56,7 @@ const Router = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dempday-create-project" element={<CreateProjectForm/>}/>
         <Route path="/demoday-choose-project" element={<ChooseProjects/>}/>
+        <Route path="/demoday-page" element={<DemodaypageComponant/>}/>
       </Routes>
     </BrowserRouter>
   )

@@ -53,11 +53,12 @@ const ChooseProjects = () => {
                             <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                               Project Title
                             </th>
-                            <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                              Project Description
-                            </th>
+                            
                             <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                               Participants
+                            </th>
+                            <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                              Project Description
                             </th>
                           </tr>
                         </thead>
@@ -66,8 +67,10 @@ const ChooseProjects = () => {
                             <tr key={index}>
                               <td>{team.teamName}</td>
                               <td>{team.projectTitle}</td>
-                              <td>{team.projectDescription}</td>
                               <td>{team.participants.join(", ")}</td>
+                              <td style={{ whiteSpace: "pre-line", textAlign: "left" }}>{team.projectDescription}</td>
+                              {/* <td>{team.projectDescription}</td> */}
+                              
                             </tr>
                           ))}
                         </tbody>
