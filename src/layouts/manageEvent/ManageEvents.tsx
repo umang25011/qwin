@@ -9,8 +9,9 @@ import {
   deleteEvent,
   getEventFunction,
   initialEventDetails,
-  updateEvent
+  updateEvent,
 } from "./manageEventSlice"
+import CSVDownload from "../../config/CSVFileDownload"
 
 export default function ManageEvents() {
   const [event, setEvent] = useState<EventDetails>(initialEventDetails)
@@ -146,7 +147,7 @@ export default function ManageEvents() {
             </div>
           </div>
           <div className="col-6">
-            <UsersTable eventID={id} />
+            <UsersTable eventID={id} csvDownload={true} />
           </div>
         </section>
       </main>

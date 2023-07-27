@@ -1,12 +1,16 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../store/store"
 import { getEventAttendees } from "./manageEventSlice"
+import CSVDownload from "../../config/CSVFileDownload"
+import { Link } from "react-router-dom"
+import { CSVLink } from "react-csv"
 
-export default function UsersTable(props: { eventID?: string }) {
+export default function UsersTable(props: { eventID?: string; csvDownload?: boolean }) {
   const attendees = useAppSelector((state) => state.manageEvent.attendees)
   const attendeed = useAppSelector((state) => state.manageEvent.attendeed)
   const dispatch = useAppDispatch()
   console.log("Local Data:", attendees)
+  const csvRef = useRef<any>(null)
 
   useEffect(() => {
     if (props.eventID) dispatch(getEventAttendees(props.eventID))
@@ -51,6 +55,33 @@ export default function UsersTable(props: { eventID?: string }) {
                         ))}
                       </tbody>
                     </table>
+                    {props.csvDownload && attendees?.length ? (
+                      <button
+                        type="button"
+                        className="cancel-button btn bg-gradient-success w-95 my-4 mb-2"
+                        onClick={(e) => {
+                          csvRef.current?.link.click()
+                        }}
+                      >
+                        Download CSV{" "}
+                        <CSVDownload
+                          csvRef={csvRef}
+                          filename="Registered Users"
+                          data={[["Student ID", "Name", "Email", "Event Attended"]].concat(
+                            attendees.map((user) => [
+                              user.studentID,
+                              user.name,
+                              user.email,
+                              attendeed
+                                ? attendeed.findIndex((item) => item === user.userID) !== -1
+                                  ? "Yes"
+                                  : "No"
+                                : "No",
+                            ])
+                          )}
+                        />
+                      </button>
+                    ) : null}
                   </div>
                 </div>
               </div>

@@ -17,6 +17,7 @@ export interface EventDetails {
     name: string
     email: string
     userID: string
+    studentID: string
   }[]
   // array of userID
   attendeed?: string[]
@@ -66,6 +67,7 @@ export const getEventAttendees = (eventID: string) => async (dispatch: AppDispat
           name: doc.data().name,
           email: doc.data().email,
           userID: doc.id,
+          studentID: doc.data().studentID
         })
       })
 

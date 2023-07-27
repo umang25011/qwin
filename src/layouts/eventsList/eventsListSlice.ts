@@ -56,6 +56,7 @@ export const registerEvent = (event: EventDetails, user: UserDetails) => async (
     await setDoc(attendeesRef, {
       name: user.name,
       email: user.email,
+      studentID: user.studentID
     })
 
     const userRef = doc(firestoreV9, FIREBASE_COLLECTIONS.users, user.userID)
