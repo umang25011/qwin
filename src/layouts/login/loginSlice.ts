@@ -29,12 +29,11 @@ export const getUserFromFirestore = (userID: string) => async (dispatch: AppDisp
         events_attended: data.events_attended,
         user_events: data.user_events,
         userID: data.userID,
-        userRole: data.userRole || USER_ROLES.Student
+        userRole: data.userRole || USER_ROLES.Student,
       }
-      console.log("User Details: ", user);
-      
+      console.log("User Details: ", user)
+
       dispatch(storeUserLocal(user))
-      window.location.href = "/"
     } else throw Error("User Not Found")
   } catch (error) {
     console.log("Error Getting User From Firestore", error)
@@ -78,7 +77,7 @@ export const handleLoginFlow = () => async (dispatch: AppDispatch) => {
             createdAt: firebase.default.firestore.FieldValue.serverTimestamp(),
             email: user.email,
             userID: user.userID,
-            userRole: USER_ROLES.Student
+            userRole: USER_ROLES.Student,
           },
           { merge: true }
         )
@@ -105,12 +104,15 @@ export const loginSlice = createSlice({
     storeUser: (state, action: PayloadAction<undefined | UserDetails>) => {
       if (action.payload) {
         state = action.payload
+        if (!action.payload.events_attended) state.events_attended = []
+        if (!action.payload.user_events) state.user_events = []
+        if (!action.payload.program) state.program = ""
         console.log(action.payload)
 
         firestore
           .collection("users")
           .doc(action.payload.userID)
-          .set(action.payload, { merge: true })
+          .set(state, { merge: true })
           .then((res) => {
             window.location.href = "/"
           })
@@ -133,13 +135,7 @@ export const loginSlice = createSlice({
   },
 })
 
-export const {
-  loginError,
-  loginSuccess,
-  loginWithMicrosoft,
-  storeUser,
-  getUserLocal,
-  storeUserLocal,
-} = loginSlice.actions
+export const { loginError, loginSuccess, loginWithMicrosoft, storeUser, getUserLocal, storeUserLocal } =
+  loginSlice.actions
 
 export default loginSlice.reducer

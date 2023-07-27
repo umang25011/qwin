@@ -1,22 +1,21 @@
-import React, { useEffect } from "react"
-import { BrowserRouter, Navigate, redirect, Route, Routes, useNavigate, useSearchParams } from "react-router-dom"
+import { useEffect, useRef } from "react"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { LOCAL_STORAGE } from "../config/localStorage"
-import PrivateRoute from "../config/PrivateRoute"
-import EventsList from "../layouts/eventsList/EventsList"
 import Login from "../layouts/login/Login"
+import { getUserFromFirestore, getUserLocal } from "../layouts/login/loginSlice"
 import ManageEvents from "../layouts/manageEvent/ManageEvents"
 import Profile from "../layouts/profile/Profile"
-import { useAppDispatch, useAppSelector } from "../store/store"
-import { getUserFromFirestore, getUserLocal } from "../layouts/login/loginSlice"
-import Verification from "../layouts/verification/Verification"
-import QrScan from "../layouts/verification/QRScanner"
-import Header from "../layouts/header/Header"
 import UserHomePage from "../layouts/userHomePage/UserHomePage"
 import Dashboard from "../layouts/dashboard/Dashboard"
 import Test from "../layouts/dashboard/Test"
 import CreateProjectForm from "../layouts/DemoDay/CreateProjectForm"
 import ChooseProjects from "../layouts/DemoDay/ChooseProjects"
 import DemodaypageComponant from "../layouts/DemodayPage/DemodaypageComponant"
+import QrScan from "../layouts/verification/QRScanner"
+import Verification from "../layouts/verification/Verification"
+import { useAppDispatch } from "../store/store"
+import { log } from "console"
+import { USER_ROLES } from "../config/helper"
 // import Dashboard from "../components/dashboard/Dashboard";
 // import NotProtectedRoute from "./NotProtectedRoute";
 // import EventDetail from "../components/event/EventDetail";
@@ -32,15 +31,15 @@ const Router = () => {
 
   useEffect(() => {
     const user = LOCAL_STORAGE.getUser()
-    const userRole = LOCAL_STORAGE.getUserRole()
-    if (user && !userRole) dispatch(getUserFromFirestore(user.userID))
-
-    // dispatch(getUserLocal())
+    if (user) dispatch(getUserFromFirestore(user.userID))
+    dispatch(getUserLocal())
     if (user === null || !user.email) {
       if (window.location.pathname !== "/login") window.location.href = "/login"
-    } else if (!user.studentID) {
+    } else if (user && !user.studentID) {
       if (window.location.pathname !== "/profile") window.location.href = "/profile"
     }
+
+    return () => {}
   }, [])
 
   return (

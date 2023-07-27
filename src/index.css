@@ -318,8 +318,7 @@ body {
 
 .modal-content {
   position: relative;
-  z-index: 10060 !important;
 }
 .modal-backdrop {
-  z-index: 0 !important;
+  display: none;
 }

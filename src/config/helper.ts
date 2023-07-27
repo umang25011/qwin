@@ -102,6 +102,8 @@ export const USER_ROLES = {
   Student: "Student",
   Professor: "Professor",
   Admin: "Admin",
+  Wait: "Wait" // this is to tell app to wait for until API loads and actual user-role is set
+  // instead of calling api again and again
 } as const
 
 export interface TeamProject {

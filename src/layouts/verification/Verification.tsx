@@ -1,13 +1,10 @@
 import React, { useEffect, useRef } from "react"
+import QRCode from "react-qr-code"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../store/store"
-import { EventDetails } from "../manageEvent/manageEventSlice"
-import { generateRandomString, startVerificationHashStrings, storeEvent } from "./verificationSlice"
-import { getVerificationString } from "../../config/helper"
-import QRCode from "react-qr-code"
-import "./QRCode.css"
-import Header from "../header/Header"
 import NewHeader from "../header/NewHeader"
+import "./QRCode.css"
+import { startVerificationHashStrings, storeEvent } from "./verificationSlice"
 
 export default function Verification() {
   const { state } = useLocation()

@@ -1,12 +1,8 @@
-import React, { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { fetchEvents } from "./eventsListSlice"
+import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../store/store"
-import EventCard from "./EventCard"
 import { EventDetails } from "../manageEvent/manageEventSlice"
-import firebase from "firebase/compat"
-import Header from "../header/Header"
-import { getUserFromFirestore } from "../login/loginSlice"
+import EventCard from "./EventCard"
+import { fetchEvents } from "./eventsListSlice"
 
 const EventList = () => {
   const dispatch = useAppDispatch()

@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from "react"
-import { toastr } from "react-redux-toastr"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../store/store"
-import Header from "../header/Header"
 import NewHeader from "../header/NewHeader"
-import {
-  deleteEvent,
-  EventDetails,
-  getEvent,
-  initialEventDetails,
-  createEvent,
-  updateEvent,
-  getEventFunction,
-} from "./manageEventSlice"
 import UsersTable from "./UsersTable"
+import {
+  EventDetails,
+  createEvent,
+  deleteEvent,
+  getEventFunction,
+  initialEventDetails,
+  updateEvent
+} from "./manageEventSlice"
 
 export default function ManageEvents() {
   const [event, setEvent] = useState<EventDetails>(initialEventDetails)
