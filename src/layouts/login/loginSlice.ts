@@ -34,6 +34,7 @@ export const getUserFromFirestore = (userID: string) => async (dispatch: AppDisp
       console.log("User Details: ", user)
 
       dispatch(storeUserLocal(user))
+      return user
     } else throw Error("User Not Found")
   } catch (error) {
     console.log("Error Getting User From Firestore", error)
@@ -62,8 +63,13 @@ export const handleLoginFlow = () => async (dispatch: AppDispatch) => {
       console.log("Login Flow")
       if (user.name && user.email && user.userID) {
         // get the user from firebase, if error, then create new
-        await dispatch(getUserFromFirestore(user.userID))
+        const existingUser = await dispatch(getUserFromFirestore(user.userID))
         dispatch(setLoading(false))
+        // to redirect user to event listing page
+        // but check if user has Student ID, Mobile No and Term Selected
+        console.log("\nLogin > Existing User\n ", existingUser)
+        if (existingUser.studentID && existingUser.program && existingUser.mobileNo) window.location.href = "/"
+        else window.location.href = "/profile"
       }
     } catch (error) {
       console.log("Creating New User")
