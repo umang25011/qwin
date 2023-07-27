@@ -1,14 +1,16 @@
 import { useEffect, useRef } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { LOCAL_STORAGE } from "../config/localStorage"
-import Dashboard from "../layouts/dashboard/Dashboard"
-import ChooseProjects from "../layouts/DemoDay/ChooseProjects"
-import CreateProjectForm from "../layouts/DemoDay/CreateProjectForm"
 import Login from "../layouts/login/Login"
 import { getUserFromFirestore, getUserLocal } from "../layouts/login/loginSlice"
 import ManageEvents from "../layouts/manageEvent/ManageEvents"
 import Profile from "../layouts/profile/Profile"
 import UserHomePage from "../layouts/userHomePage/UserHomePage"
+import Dashboard from "../layouts/dashboard/Dashboard"
+import Test from "../layouts/dashboard/Test"
+import CreateProjectForm from "../layouts/DemoDay/CreateProjectForm"
+import ChooseProjects from "../layouts/DemoDay/ChooseProjects"
+import DemodaypageComponant from "../layouts/DemodayPage/DemodaypageComponant"
 import QrScan from "../layouts/verification/QRScanner"
 import Verification from "../layouts/verification/Verification"
 import { useAppDispatch } from "../store/store"
@@ -51,8 +53,9 @@ const Router = () => {
         <Route path="/start-verification" element={<Verification />} />
         <Route path="/qr-scanner" element={<QrScan />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dempday-create-project" element={<CreateProjectForm />} />
-        <Route path="/demoday-choose-project" element={<ChooseProjects />} />
+        <Route path="/dempday-create-project" element={<CreateProjectForm/>}/>
+        <Route path="/demoday-choose-project" element={<ChooseProjects/>}/>
+        <Route path="/demoday-page" element={<DemodaypageComponant/>}/>
       </Routes>
     </BrowserRouter>
   )
