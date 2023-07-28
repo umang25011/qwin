@@ -437,7 +437,8 @@ input[type="submit"]:hover {
   .section-1 {
     justify-content: space-between;
     grid-template-columns: 1fr 1fr;
-    padding: 10rem 5rem 0 5rem;
+    padding: 10rem 5rem 5rem 5rem;
+    max-width: 100%;
   }
   .slogan .company-title {
     max-width: 30rem;
@@ -445,7 +446,7 @@ input[type="submit"]:hover {
     letter-spacing: 0.5rem;
   }
   .slogan .company-slogan {
-    max-width: 20rem;
+    max-width: 30rem;
     font-size: 1.3rem;
   }
   /* -------- OFFER SECTION ------------- */
@@ -454,7 +455,7 @@ input[type="submit"]:hover {
   }
   .offer {
     margin: 5rem 0;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-between;
     grid-template-rows: auto auto;
   }

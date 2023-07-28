@@ -10,23 +10,13 @@ export default function DemodaypageComponant() {
         <nav className="navbar1">
           <ul className="nav-items">
             <li className="nav-item">
-              <a href="#" className="nav-link">
-                HOME
+              <a href="/dempday-create-project" className="nav-link">
+                Submit Project
               </a>
             </li>
             <li className="nav-item">
-              <a href="#" className="nav-link">
-                OFFER
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="#" className="nav-link">
-                SHOP
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="#" className="nav-link">
-                CONTACT
+              <a href="/demoday-choose-project" className="nav-link">
+                Show Projects
               </a>
             </li>
           </ul>
@@ -67,34 +57,6 @@ export default function DemodaypageComponant() {
               <p className="offer-hook">This a Lenovo nulla vulputate magna vel odio sagittis bibendium...</p>
               <div className="cart-btn">ADD TO CART</div>
             </div>
-          </div>
-        </section>
-
-        <section className="container section-4">
-          <div className="sponsor sponsor-1">
-            <img
-              src="https://raw.githubusercontent.com/r-e-d-ant/Computer-store-website/b90ac65459206fef22e9b87313f587185554263b/assets/images/microsoft.svg"
-              alt=""
-            />
-          </div>
-          <div className="sponsor sponsor-2">
-            <img
-              src="https://raw.githubusercontent.com/r-e-d-ant/Computer-store-website/b90ac65459206fef22e9b87313f587185554263b/assets/images/apple.svg"
-              alt=""
-            />
-          </div>
-
-          <div className="sponsor sponsor-3">
-            <img
-              src="https://raw.githubusercontent.com/r-e-d-ant/Computer-store-website/b90ac65459206fef22e9b87313f587185554263b/assets/images/dell.svg"
-              alt=""
-            />
-          </div>
-          <div className="sponsor sponsor-4">
-            <img
-              src="https://raw.githubusercontent.com/r-e-d-ant/Computer-store-website/b90ac65459206fef22e9b87313f587185554263b/assets/images/ibm.svg"
-              alt=""
-            />
           </div>
         </section>
 
@@ -143,7 +105,7 @@ export default function DemodaypageComponant() {
         </div>
         <div className="container end-footer">
           <div className="copyright">
-            copyright © 2023 - Present • <b>Qwin</b>
+            Copyright © 2023 - Present • <b>Qwin</b>
           </div>
           <a className="designer" href="#">
             University of Windsor
