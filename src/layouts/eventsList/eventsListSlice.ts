@@ -39,6 +39,7 @@ export const fetchEvents = () => async (dispatch: AppDispatch) => {
         address: data.address,
         date: data.date,
         isExpired: new Date(data.date) < now,
+        maxParticipants: data.maxParticipants,
       })
     })
     events.sort((a, b) => Number(a.isExpired) - Number(b.isExpired))
@@ -53,25 +54,32 @@ export const registerEvent = (event: EventDetails, user: UserDetails) => async (
   try {
     const eventRef = doc(firestoreV9, FIREBASE_COLLECTIONS.events, event.id)
     const attendeesRef = doc(eventRef, FIREBASE_COLLECTIONS.eventsSubAttendees, user.userID)
-    await setDoc(attendeesRef, {
-      name: user.name,
-      email: user.email,
-      studentID: user.studentID
-    })
 
-    const userRef = doc(firestoreV9, FIREBASE_COLLECTIONS.users, user.userID)
-    const user_event = { eventID: event.id, title: event.title, date: event.date }
-    await updateDoc(userRef, {
-      [FIREBASE_COLLECTIONS.usersSubEvent]: arrayUnion(event),
-    })
-    const updatedUser = { ...user }
-    if (!updatedUser.user_events) updatedUser.user_events = []
-    updatedUser.user_events = user.user_events ? [...user.user_events, event] : [event]
-    // store event in Local Storage
-    dispatch(storeUserLocal(updatedUser))
-    toastr.success(`${event.title}`, "Event Registration Successful")
+    const attendeesSnapShot = await getDocs(collection(eventRef, FIREBASE_COLLECTIONS.eventsSubAttendees))
 
-    console.log("Event Registered Successfully")
+    if (attendeesSnapShot.size < event.maxParticipants) {
+      await setDoc(attendeesRef, {
+        name: user.name,
+        email: user.email,
+        studentID: user.studentID,
+      })
+
+      const userRef = doc(firestoreV9, FIREBASE_COLLECTIONS.users, user.userID)
+      const user_event = { eventID: event.id, title: event.title, date: event.date }
+      await updateDoc(userRef, {
+        [FIREBASE_COLLECTIONS.usersSubEvent]: arrayUnion(event),
+      })
+      const updatedUser = { ...user }
+      if (!updatedUser.user_events) updatedUser.user_events = []
+      updatedUser.user_events = user.user_events ? [...user.user_events, event] : [event]
+      // store event in Local Storage
+      dispatch(storeUserLocal(updatedUser))
+      toastr.success(`${event.title}`, "Event Registration Successful")
+
+      console.log("Event Registered Successfully")
+    } else {
+      toastr.error(`${event.title}`, "No Seats Available!")
+    }
   } catch (e) {
     console.log(e)
   }

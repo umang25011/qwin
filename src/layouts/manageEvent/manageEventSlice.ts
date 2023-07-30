@@ -13,6 +13,7 @@ export interface EventDetails {
   description: string
   address: string
   date: string
+  maxParticipants: number
   attendees?: {
     name: string
     email: string
@@ -32,6 +33,7 @@ export const initialEventDetails: EventDetails = {
   date: "",
   attendeed: [],
   attendees: [],
+  maxParticipants: 0
 }
 
 export const getEventFunction = (id: string) => async (dispatch: AppDispatch) => {
@@ -46,6 +48,7 @@ export const getEventFunction = (id: string) => async (dispatch: AppDispatch) =>
           address: data.address,
           date: data.date,
           id: res.id,
+          maxParticipants: data.maxParticipants
         }
         dispatch(storeEvent(event))
       }
@@ -98,6 +101,7 @@ export const manageEventSlice = createSlice({
       state.date = action.payload.date
       state.id = action.payload.id
       state.description = action.payload.description
+      state.maxParticipants = action.payload.maxParticipants
     },
     createEvent: (state, action: PayloadAction<EventDetails>) => {
       // firestore.collection("events").add(action.payload)
@@ -124,6 +128,8 @@ export const manageEventSlice = createSlice({
     updateEvent: (state, action: PayloadAction<EventDetails>) => {
       // firestore.collection("events").add(action.payload)
       const eventRef = doc(firestoreV9, "events", action.payload.id)
+      console.log("UPdated Event Dispatch: ", action.payload);
+      
       setDoc(eventRef, action.payload, { merge: true })
         .then((res) => {
           console.log(res)

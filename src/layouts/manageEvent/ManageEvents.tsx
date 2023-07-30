@@ -102,7 +102,8 @@ export default function ManageEvents() {
                               required
                             />
                           </div>
-                          <div className="mb-3">
+                          <div className="row">
+                          <div className="mb-3 col-6">
                             <label htmlFor="date-time" className="form-label">
                               Date and Time:
                             </label>
@@ -116,6 +117,20 @@ export default function ManageEvents() {
                               required
                             />
                           </div>
+                          <div className="mb-3 col-6">
+                            <label htmlFor="maxParticipants" className="form-label">
+                              Max Participants:
+                            </label>
+                            <input
+                              type="number"
+                              className="form-control"
+                              id="maxParticipants"
+                              name="maxParticipants"
+                              value={event.maxParticipants}
+                              onChange={(e) => setEvent({ ...event, maxParticipants: parseInt(e.target.value) })}
+                              required
+                            />
+                          </div></div>
                           <div className="button-group">
                             <button
                               type="submit"
