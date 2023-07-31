@@ -67,11 +67,12 @@ export default function UsersTable(props: { eventID?: string; csvDownload?: bool
                         <CSVDownload
                           csvRef={csvRef}
                           filename="Registered Users"
-                          data={[["Student ID", "Name", "Email", "Event Attended"]].concat(
+                          data={[["Student ID", "Name", "Email", "Program", "Event Attended"]].concat(
                             attendees.map((user) => [
                               user.studentID,
                               user.name,
                               user.email,
+                              user.program,
                               attendeed
                                 ? attendeed.findIndex((item) => item === user.userID) !== -1
                                   ? "Yes"

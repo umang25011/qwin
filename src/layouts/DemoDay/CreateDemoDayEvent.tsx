@@ -35,7 +35,7 @@ export default function CreateDemoDayEvent() {
 
   // update state object from redux
   useEffect(() => {
-    setEvent(reduxEvent)
+    if (reduxEvent.id) setEvent(reduxEvent)
     console.log("Redux Event: ", reduxEvent)
   }, [reduxEvent])
 
@@ -146,7 +146,9 @@ export default function CreateDemoDayEvent() {
               </div>
             </div>
           </div>
-          <div className="col-6"><DemoDayUsersTable eventID={id} csvDownload={true} /></div>
+          <div className="col-6">
+            <DemoDayUsersTable eventID={id} csvDownload={true} />
+          </div>
         </section>
       </main>
     </div>

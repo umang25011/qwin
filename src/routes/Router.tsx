@@ -57,7 +57,7 @@ const Router = () => {
         <Route path="/dempday-create-project" element={<CreateProjectForm/>}/>
         <Route path="/demoday-choose-project" element={<ChooseProjects/>}/>
         <Route path="/demoday-page" element={<DemodaypageComponant/>}/>
-        <Route path="/create-demo-day-event" element={<CreateDemoDayEvent/>}/>
+        <Route path="/create-demo-day-event/:id?" element={<CreateDemoDayEvent/>}/>
       </Routes>
     </BrowserRouter>
   )

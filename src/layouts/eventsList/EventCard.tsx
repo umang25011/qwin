@@ -20,52 +20,6 @@ export default function EventCard({ event }: { event: EventDetails }) {
   const [isExpanded, setIsExpanded] = useState("")
 
   return (
-    // <div className={`event-details ${isExpanded ? "show" : ""} mb-5`}>
-    //   <h1 className="event-title">{event.title}</h1>
-    //   <p className="event-date">{new Date(event.date).toLocaleString("en-US", DATE_FORMAT_OPTION)}</p>
-    //   <p className="event-address">{event.address}</p>
-    //   {isExpanded ? <div className="event-details-more">{event.description}</div> : null}
-
-    //   <div className="buttons">
-    //     <button
-    //       className="details-button"
-    //       onClick={() => {
-    //         if (isAdmin()) navigate("/events/" + event.id)
-    //         else setIsExpanded((val) => !val)
-    //       }}
-    //     >
-    //       {isAdmin() ? "Edit" : "Details"}
-    //     </button>
-    //     {isAdmin() ? (
-    //       <button
-    //         className="details-button"
-    //         onClick={(e) => {
-    //           navigate("/start-verification", { state: event })
-    //         }}
-    //       >
-    //         Start Verification
-    //       </button>
-    //     ) : (
-    //       <button
-    //         className={`${isEventAttended ? "event-attended-button" : ""} ${
-    //           isEventRegistered ? "cancel-button" : "register-button"
-    //         }`}
-    //         disabled={isEventAttended}
-    //         onClick={(e) => {
-    //           if (isEventRegistered) {
-    //             console.log("Calling Unregister")
-    //             dispatch(unregisterEvent(event, user))
-    //           } else {
-    //             console.log("Calling Register")
-    //             dispatch(registerEvent(event, user))
-    //           }
-    //         }}
-    //       >
-    //         {isEventAttended ? "Attended" : isEventRegistered ? "Cancel" : "Register"}
-    //       </button>
-    //     )}
-    //   </div>
-    // </div>
     <>
       <div className="card card-blog card-plain">
         <div className={`${event.isExpired ? "" : ""}card-body px-1 pb-0`}>

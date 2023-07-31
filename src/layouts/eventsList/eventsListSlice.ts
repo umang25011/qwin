@@ -62,6 +62,7 @@ export const registerEvent = (event: EventDetails, user: UserDetails) => async (
         name: user.name,
         email: user.email,
         studentID: user.studentID,
+        program: user.program
       })
 
       const userRef = doc(firestoreV9, FIREBASE_COLLECTIONS.users, user.userID)

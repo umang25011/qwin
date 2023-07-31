@@ -19,6 +19,7 @@ export interface EventDetails {
     email: string
     userID: string
     studentID: string
+    program: string
   }[]
   // array of userID
   attendeed?: string[]
@@ -33,7 +34,7 @@ export const initialEventDetails: EventDetails = {
   date: "",
   attendeed: [],
   attendees: [],
-  maxParticipants: 0
+  maxParticipants: 0,
 }
 
 export const getEventFunction = (id: string) => async (dispatch: AppDispatch) => {
@@ -48,7 +49,7 @@ export const getEventFunction = (id: string) => async (dispatch: AppDispatch) =>
           address: data.address,
           date: data.date,
           id: res.id,
-          maxParticipants: data.maxParticipants
+          maxParticipants: data.maxParticipants,
         }
         dispatch(storeEvent(event))
       }
@@ -70,7 +71,8 @@ export const getEventAttendees = (eventID: string) => async (dispatch: AppDispat
           name: doc.data().name,
           email: doc.data().email,
           userID: doc.id,
-          studentID: doc.data().studentID
+          studentID: doc.data().studentID,
+          program: doc.data().program || "",
         })
       })
 
@@ -128,8 +130,8 @@ export const manageEventSlice = createSlice({
     updateEvent: (state, action: PayloadAction<EventDetails>) => {
       // firestore.collection("events").add(action.payload)
       const eventRef = doc(firestoreV9, "events", action.payload.id)
-      console.log("UPdated Event Dispatch: ", action.payload);
-      
+      console.log("UPdated Event Dispatch: ", action.payload)
+
       setDoc(eventRef, action.payload, { merge: true })
         .then((res) => {
           console.log(res)
@@ -144,7 +146,6 @@ export const manageEventSlice = createSlice({
     storeAttendees: (state, action: PayloadAction<EventDetails["attendees"]>) => {
       if (action.payload) {
         state.attendees = action.payload
-
       }
 
       return state
@@ -156,14 +157,7 @@ export const manageEventSlice = createSlice({
   },
 })
 
-export const {
-  createEvent,
-  deleteEvent,
-  getEvent,
-  updateEvent,
-  storeEvent,
-  storeAttendeed,
-  storeAttendees,
-} = manageEventSlice.actions
+export const { createEvent, deleteEvent, getEvent, updateEvent, storeEvent, storeAttendeed, storeAttendees } =
+  manageEventSlice.actions
 
 export default manageEventSlice.reducer
