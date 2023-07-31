@@ -55,8 +55,8 @@ export default function NewHeader() {
 
                 {userRole === USER_ROLES.Student ? (
                   <li className="nav-item">
-                    <span className="nav-link mb-0 px-0 py-1 alink" onClick={() => navigate("/dempday-create-project")}>
-                      <i className="fa-solid fa-id-card fa-beat-fade alink color-white-imp"></i>
+                    <span className="nav-link mb-0 px-0 py-1 alink" onClick={() => navigate("/demoday-page")}>
+                      <i className="fa-solid fa-id-card alink color-white-imp"></i>
                       <span className="ms-1 color-white-imp">DemoDay</span>
                     </span>
                   </li>
