@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react"
+import { USER_ROLES } from "../../config/helper"
 import { LOCAL_STORAGE } from "../../config/localStorage"
+import { useAppDispatch, useAppSelector } from "../../store/store"
+import { DemoDayEventDetails } from "../DemoDay/createDemoDaySlice"
+import { EventDetails } from "../manageEvent/manageEventSlice"
+import DemoDayEventCard from "./DemoDayEventCard"
+import { fetchDemoDayEvents } from "./demoDayEventListSlice"
 import "./demoDayPage.css"
 import Photo1 from "./photo1.jpg"
 import Photo2 from "./photo2.jpg"
-import { USER_ROLES } from "../../config/helper"
-import { DemoDayEventDetails } from "../DemoDay/createDemoDaySlice"
-import { useAppDispatch, useAppSelector } from "../../store/store"
-import { fetchDemoDayEvents } from "./demoDayEventListSlice"
-import EventCard from "../eventsList/EventCard"
-import { EventDetails } from "../manageEvent/manageEventSlice"
 
 export default function DemodaypageComponant() {
   const [userRole, setIsAdmin] = useState(LOCAL_STORAGE.getUserRole())
   const [demoDayEvents, setDemoDayEvents] = useState<DemoDayEventDetails[]>()
   const dispatch = useAppDispatch()
-  const demoDayEventList = useAppSelector(state=>state.demoDayEventList)
+  const demoDayEventList = useAppSelector((state) => state.demoDayEventList)
 
   useEffect(() => {
     dispatch(fetchDemoDayEvents())
@@ -88,22 +88,24 @@ export default function DemodaypageComponant() {
             </div>
           </div>
         </section>
-        <section>
-          
+
+        <section className="container section-5">
+          <h2 className="subscribe-input-label">Demo Day</h2>
           {demoDayEventList?.length ? (
             demoDayEventList.map((event) => (
-              <div key={event.id}>
-                <EventCard event={event as EventDetails} />
+              <div className="col-lg-3 m-3" key={event.id}>
+                <div className="card mb-4">
+                  <div className="card-body p-3">
+                    <div className="col-12 mb-xl-0 mb-4">
+                      <DemoDayEventCard event={event as EventDetails} />
+                    </div>
+                  </div>
+                </div>
               </div>
             ))
           ) : (
             <h1>No Registered Events</h1>
           )}
-          
-        </section>
-
-        <section className="container section-5">
-          <h2 className="subscribe-input-label">Demo Day</h2>
         </section>
       </main>
       <footer>

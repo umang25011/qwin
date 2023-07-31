@@ -62,7 +62,7 @@ export const getEventAttendees = (eventID: string) => async (dispatch: AppDispat
     eventID,
     FIREBASE_COLLECTIONS.eventsSubAttendees
   )
-  const eventAttendeedRef = collection(firestoreV9, "events", eventID, FIREBASE_COLLECTIONS.privateUnverifiedAttendees)
+  const eventAttendeedRef = collection(firestoreV9, FIREBASE_COLLECTIONS.demoDayEvents, eventID, FIREBASE_COLLECTIONS.privateUnverifiedAttendees)
 
   getDocs(eventAttendeesRef)
     .then((snapshot) => {
