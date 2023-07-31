@@ -16,6 +16,7 @@ import Verification from "../layouts/verification/Verification"
 import { useAppDispatch } from "../store/store"
 import { log } from "console"
 import { USER_ROLES } from "../config/helper"
+import CreateDemoDayEvent from "../layouts/DemoDay/CreateDemoDayEvent"
 // import Dashboard from "../components/dashboard/Dashboard";
 // import NotProtectedRoute from "./NotProtectedRoute";
 // import EventDetail from "../components/event/EventDetail";
@@ -56,6 +57,7 @@ const Router = () => {
         <Route path="/dempday-create-project" element={<CreateProjectForm/>}/>
         <Route path="/demoday-choose-project" element={<ChooseProjects/>}/>
         <Route path="/demoday-page" element={<DemodaypageComponant/>}/>
+        <Route path="/create-demo-day-event" element={<CreateDemoDayEvent/>}/>
       </Routes>
     </BrowserRouter>
   )

@@ -1,24 +1,53 @@
+import { useEffect, useState } from "react"
+import { LOCAL_STORAGE } from "../../config/localStorage"
 import "./demoDayPage.css"
 import Photo1 from "./photo1.jpg"
 import Photo2 from "./photo2.jpg"
+import { USER_ROLES } from "../../config/helper"
+import { DemoDayEventDetails } from "../DemoDay/createDemoDaySlice"
+import { useAppDispatch, useAppSelector } from "../../store/store"
+import { fetchDemoDayEvents } from "./demoDayEventListSlice"
+import EventCard from "../eventsList/EventCard"
+import { EventDetails } from "../manageEvent/manageEventSlice"
 
 export default function DemodaypageComponant() {
+  const [userRole, setIsAdmin] = useState(LOCAL_STORAGE.getUserRole())
+  const [demoDayEvents, setDemoDayEvents] = useState<DemoDayEventDetails[]>()
+  const dispatch = useAppDispatch()
+  const demoDayEventList = useAppSelector(state=>state.demoDayEventList)
+
+  useEffect(() => {
+    dispatch(fetchDemoDayEvents())
+  }, [])
+
   return (
     <body>
       <header>
         <div className="company-logo">Qwin</div>
         <nav className="navbar1">
           <ul className="nav-items">
-            <li className="nav-item">
-              <a href="/dempday-create-project" className="nav-link">
-                Submit Project
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="/demoday-choose-project" className="nav-link">
-                Show Projects
-              </a>
-            </li>
+            {userRole === USER_ROLES.Student ? (
+              <li className="nav-item">
+                <a href="/dempday-create-project" className="nav-link">
+                  Submit Project
+                </a>
+              </li>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <a href="/demoday-choose-project" className="nav-link">
+                    View Projects
+                  </a>
+                </li>
+              </>
+            )}
+            {userRole === USER_ROLES.Admin ? (
+              <li className="nav-item">
+                <a href="/create-demo-day-event" className="nav-link">
+                  Create DemoDay Event
+                </a>
+              </li>
+            ) : null}
           </ul>
         </nav>
         <div className="menu-toggle">
@@ -58,6 +87,19 @@ export default function DemodaypageComponant() {
               <div className="cart-btn">ADD TO CART</div>
             </div>
           </div>
+        </section>
+        <section>
+          
+          {demoDayEventList?.length ? (
+            demoDayEventList.map((event) => (
+              <div key={event.id}>
+                <EventCard event={event as EventDetails} />
+              </div>
+            ))
+          ) : (
+            <h1>No Registered Events</h1>
+          )}
+          
         </section>
 
         <section className="container section-5">

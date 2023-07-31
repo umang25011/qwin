@@ -61,9 +61,6 @@ const ChooseProjects = () => {
                             <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                               Project Description
                             </th>
-                            <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                              Project Description
-                            </th>
                           </tr>
                         </thead>
                         <tbody>

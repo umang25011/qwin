@@ -16,6 +16,7 @@ export const FIREBASE_COLLECTIONS = {
   verified: "verified",
   privateUnverifiedAttendees: "private-unveried-attendees",
   eventsAttended: "events_attended",
+  demoDayEvents: "Demo_Day_Events"
 }
 
 export function generateRandomCharacters(): string {
